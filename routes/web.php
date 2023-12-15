@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+});
+
+Route::group(['prefix' => 'cashier', 'middleware' => 'cashier'], function () {
+    Route::get('/dashboard', 'CashierController@dashboard')->name('cashier.dashboard');
+});
