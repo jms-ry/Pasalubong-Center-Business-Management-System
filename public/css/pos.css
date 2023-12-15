@@ -1,0 +1,207 @@
+
+/* Import Google Fonts */
+
+
+/* Custom styles */
+body{
+  position: relative;
+  min-height: 100hv;
+  width: 100%;
+  
+}
+
+.navbar{
+  height: 60px;
+  background: rgb(2, 57, 18);
+ 
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #fff; /* Change this color to your desired color */
+  font-weight: bold;
+
+  
+}
+
+
+
+.card {
+  margin-bottom: 20px;
+  
+}
+
+  
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-10 {
+  margin-top: 90px;
+}
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.logout-button  {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 20%;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logout-button img {
+  width: 40px; /* Adjust the width and height as needed */
+  height: 40px;
+}
+
+.logout-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f6f4f000;
+  opacity: 0.8;
+  z-index: -1;
+  transition: opacity 0.2s;
+  border-radius: 50%;
+}
+
+.logout-button:hover::before {
+  opacity: 1;
+}
+.logout-button::after {
+  content: attr(data-name);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.logout-button:hover::after {
+  opacity: 1;
+}
+.logout-button.btn-warning:hover {
+  box-shadow: none !important; /* Remove the box-shadow on hover */
+}
+.logout-button:focus,
+.logout-button:active {
+  outline: none !important ;/* Remove the blue color outline */
+}
+
+/*Profile Icon*/
+.profile-button  {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+.profile-button img {
+  width: 40px; /* Adjust the width and height as needed */
+  height: 40px;
+}
+
+.profile-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ecf0f500;
+  opacity: 0.8;
+  z-index: -1;
+  transition: opacity 0.2s;
+  border-radius: 50%;
+}
+
+.profile-button:hover::before {
+  opacity: 1;
+}
+.profile-button::after {
+  content: attr(data-name);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.profile-button:hover::after {
+  opacity: 1;
+}
+.profile-button.btn-info:hover {
+  box-shadow: none !important; /* Remove the box-shadow on hover */
+}
+.profile-button:focus,
+.profile-button:active {
+  outline: none !important ;/* Remove the blue color outline */
+}
+.highlight{
+  cursor: pointer; /* Add a cursor pointer when hovering */
+}
+
+#disabledMessage {
+  color: red;
+  font-weight: bold;
+}
+
+#successMessage {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+
