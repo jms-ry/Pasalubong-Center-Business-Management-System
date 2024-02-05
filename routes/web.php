@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +15,12 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('home'); // Redirect authenticated users to the home page
+    }
     return view('welcome');
 })->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
-});
-
-Route::group(['prefix' => 'cashier', 'middleware' => 'cashier'], function () {
-    Route::get('/dashboard', 'CashierController@dashboard')->name('cashier.dashboard');
-});
