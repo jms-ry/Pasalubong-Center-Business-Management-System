@@ -53,33 +53,97 @@
             </nav>
            
         @endauth
-        <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+        <div class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title text-light fw-bold" id="sidebarLabel">Store Administration</h5>
-                <button type="button" class="btn-close text-light fw-bold" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close  fw-bold" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-lg btn-success fw-bold text-light" type="button">
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-grid me-2 fs-3"></i>
                             <span class="flex-grow-1">Dashboard</span>
                         </div>
                     </button>
-                    <button class="btn btn-lg btn-success fw-bold text-light" type="button">
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-pc-display-horizontal me-2 fs-3"></i>
+                            <span class="flex-grow-1">Point of Sales</span>
+                        </div>
+                    </button>
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-people me-2 fs-3"></i>
                             <span class="flex-grow-1">Employees</span>
                         </div>
                     </button>
-                    <button class="btn btn-lg btn-success fw-bold text-light" type="button">
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-person-vcard-fill me-2 fs-3"></i>
                             <span class="flex-grow-1">Customers</span>
                         </div>
                     </button>
-                    <button class="btn btn-lg btn-success fw-bold text-light" type="button">
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
                         <div class="d-flex align-items-center">
+                            <i class="bi bi-truck me-2 fs-3"></i>
+                            <span class="flex-grow-1">Suppliers</span>
+                        </div>
+                    </button>
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-boxes me-2 fs-3"></i>
+                            <span class="flex-grow-1">Products</span>
+                        </div>
+                    </button>
+                    <button type="button" class="btn btn-lg btn-outline-success fw-bold text-light" data-bs-toggle="collapse" data-bs-target="#salesManagementCollapse">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-currency-dollar me-2 fs-3"></i>
+                            <span class="flex-grow-1">Sales Management</span>
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </button>
+                    <div class="collapse" id="salesManagementCollapse">
+                        <div class="card card-body d-grid gap-2 bg-light">
+                            <button class="btn btn-outline-info btn-sm fw-bold text-dark" type="button">
+                                <div class="d-flex align-items-center ">
+                                    <i class="bi bi-cart3 me-2 fs-3"></i>
+                                    <span class="flex-grow-1">Inventory</span>
+                                </div>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm fw-bold text-dark" type="button">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-table me-2 fs-3"></i>
+                                    <span class="flex-grow-1">Products Sales</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-lg btn-outline-success fw-bold text-light" data-bs-toggle="collapse" data-bs-target="#timeManagementCollapse">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock-history me-2 fs-3"></i>
+                            <span class="flex-grow-1">Time Management</span>
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                    </button>
+                    <div class="collapse" id="timeManagementCollapse">
+                        <div class="card card-body d-grid gap-2 bg-light">
+                            <button class="btn btn-outline-info btn-sm fw-bold text-dark" type="button">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-copy me-2 fs-3"></i>
+                                    <span class="flex-grow-1">Activity Logs</span>
+                                </div>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm fw-bold text-dark" type="button">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-calendar-check me-2 fs-3"></i>
+                                    <span class="flex-grow-1">Daily Time Record</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
+                        <div class="d-flex align-items-center ">
                             <i class="bi bi-person-workspace me-2 fs-3"></i>
                             <span class="flex-grow-1">Accounts</span>
                         </div>
