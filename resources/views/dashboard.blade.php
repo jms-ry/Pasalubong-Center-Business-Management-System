@@ -37,7 +37,13 @@
                     <div class="card-body bg-success">
                         <div class="row text-dark fw-bold">
                             <div class="col-6 align-items-center ms-auto">
-                                <span class="fs-3 fw-bold d-block mt-2">{{ $totalOrders}}</span>
+                                <span class="fs-3 fw-bold d-block mt-2">
+                                    @if( $totalOrders != null)
+                                        {{ $totalOrders }}
+                                    @else
+                                        0
+                                    @endif
+                                </span>
                                 <span class="fs-6">Total Product Sales</span>
                             </div>
                             <div class="col-6 text-center">
@@ -51,7 +57,9 @@
                     <div class="card-body bg-success">
                         <div class="row text-dark fw-bold">
                             <div class="col-6 align-items-center ms-auto">
-                                <span class="fs-3 fw-bold d-block mt-2">3</span>
+                                <span class="fs-3 fw-bold d-block mt-2">
+                                    {{$totalUsers}}
+                                </span>
                                 <span class="fs-6">Total Registered Accounts</span>
                             </div>
                             <div class="col-6 text-center">
@@ -68,7 +76,7 @@
                     <div class="card-body bg-success">
                         <div class="row text-dark fw-bold">
                             <div class="col-6 align-items-center ms-auto">
-                                <span class="fs-3 fw-bold d-block mt-2">3</span>
+                                <span class="fs-3 fw-bold d-block mt-2">{{$totalCustomers}}</span>
                                 <span class="fs-6">Total Customers</span>
                             </div>
                             <div class="col-6 text-center">
@@ -82,7 +90,7 @@
                     <div class="card-body bg-success">
                         <div class="row text-dark fw-bold">
                             <div class="col-6 align-items-center ms-auto">
-                                <span class="fs-3 fw-bold d-block mt-2">3</span>
+                                <span class="fs-3 fw-bold d-block mt-2">{{$totalProducts}}</span>
                                 <span class="fs-6">Total Products</span>
                             </div>
                             <div class="col-6 text-center">
@@ -96,7 +104,13 @@
                     <div class="card-body bg-success">
                         <div class="row text-dark fw-bold">
                             <div class="col-6 align-items-center ms-auto">
-                                <span class="fs-3 fw-bold d-block mt-2">3</span>
+                                <span class="fs-3 fw-bold d-block mt-2">
+                                    @if( $outOfStockProductsCount != null)
+                                        {{ $outOfStockProductsCount }}
+                                    @else
+                                        0
+                                    @endif
+                                </span>
                                 <span class="fs-6">Total Out of Stock Products</span>
                             </div>
                             <div class="col-6 text-center">
@@ -115,10 +129,14 @@
                         <strong class="ms-2">Recent Products</strong>
                     </div>
                     <div class="card-body ">
-                        <span class="bg-primary d-flex align-items-center p-2 fs-5 text-white fw-bold">
-                            <i class="bi bi-upc" style="font-size: 1.5rem"></i>
-                            <strong class="ms-1">Potato Chips</strong>
-                        </span>
+                        @if($recentProducts)
+                            <span class="bg-primary d-flex align-items-center p-2 fs-5 text-white fw-bold">
+                                <i class="bi bi-upc" style="font-size: 1.5rem"></i>
+                                <strong class="ms-1">{{$recentProducts->name}}</strong>
+                            </span>
+                        @else
+                            <p class="font-italic text-muted text-start fs-6">No recent products found.</p>
+                        @endif
                     </div>
                 </div>
 
@@ -128,10 +146,16 @@
                         <strong class="ms-2">Recent Products Out of Stocks</strong>
                     </div>
                     <div class="card-body">
-                        <span class="bg-primary d-flex align-items-center p-2 fs-5 text-white fw-bold">
-                            <i class="bi bi-upc" style="font-size: 1.5rem"></i>
-                            <strong class="ms-1">Potato Chips</strong>
-                        </span>
+                        @if($outOfStockProductsCount > 0)
+                            @foreach($outOfStockProducts as $product)
+                                <span class="bg-primary d-flex align-items-center p-2 fs-5 text-white fw-bold m-2">
+                                    <i class="bi bi-upc" style="font-size: 1.5rem"></i>
+                                    <strong class="ms-1">{{ $product->name }}</strong>
+                                </span>
+                            @endforeach
+                        @else
+                            <p class="font-italic text-muted text-start fs-6">No Products that were out of stock.</p>
+                        @endif
                     </div>
                 </div>
             </div>

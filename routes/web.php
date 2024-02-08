@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (auth()->check()) {
-        return redirect()->route('home'); // Redirect authenticated users to the home page
+        return redirect()->route('dashboard'); // Redirect authenticated users to the home page
     }
     return view('welcome');
 })->name('welcome');
