@@ -22,8 +22,8 @@
     <div id="app">
         @auth
             <nav class="navbar navbar-light bg-white shadow-sm ">
-                <button class="navbar-toggler ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
-                    <span class="navbar-toggler-icon fw-bold"></span>
+                <button class="navbar-toggler ms-3 text-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                    <i class="bi bi-menu-button-wide-fill"></i>
                 </button>
                 <a class="navbar-brand text-primary fw-bold fs-4 mx-auto ">
                     VSU Pasalubong Center Business Management System
@@ -56,7 +56,7 @@
         <div class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title text-light fw-bold" id="sidebarLabel">Store Administration</h5>
-                <button type="button" class="btn-close  fw-bold" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white fw-bold" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="d-grid gap-2">
@@ -154,6 +154,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @auth
+            <footer class="bg-light text-dark text-center">
+                <p>&copy; 2024 VSU Pasalubong Center Business Management System.</p>
+            </footer>
+        @endauth
     </div>
 </body>
 </html>
