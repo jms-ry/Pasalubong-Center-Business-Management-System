@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (auth()->check()) {
-        return redirect()->route('dashboard'); // Redirect authenticated users to the home page
+        Session::flash('status', 'Access denied. You are already logged in.');
+        return back();
     }
     return view('welcome');
 })->name('welcome');
@@ -24,3 +25,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees');
+Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
+Route::get('/suppliers', [App\Http\Controllers\SupplierController::class, 'index'])->name('suppliers');
+Route::get('/product-inventory', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
+Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
