@@ -149,7 +149,7 @@
                                     <span class="flex-grow-1">Product Inventory</span>
                                 </div>
                             </button>
-                            <button class="btn btn-outline-danger btn-sm fw-bold text-dark" type="button">
+                            <button class="btn btn-sm btn-outline-info fw-bold text-dark" type="button" onclick="window.location.href='/sales'">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-table me-2 fs-3"></i>
                                     <span class="flex-grow-1">Products Sales</span>
@@ -166,13 +166,13 @@
                     </button>
                     <div class="collapse" id="timeManagementCollapse">
                         <div class="card card-body d-grid gap-2 bg-light">
-                            <button class="btn btn-outline-info btn-sm fw-bold text-dark" type="button">
+                        <button class="btn btn-sm btn-outline-info fw-bold text-dark" type="button" onclick="window.location.href='/logs'">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-copy me-2 fs-3"></i>
                                     <span class="flex-grow-1">Activity Logs</span>
                                 </div>
                             </button>
-                            <button class="btn btn-outline-danger btn-sm fw-bold text-dark" type="button">
+                            <button class="btn btn-sm btn-outline-info fw-bold text-dark" type="button" onclick="window.location.href='/dtrs'">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-calendar-check me-2 fs-3"></i>
                                     <span class="flex-grow-1">Daily Time Record</span>

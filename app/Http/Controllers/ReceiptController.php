@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Receipt;
 use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
+use Illuminate\Support\Facades\DB;
 
 class ReceiptController extends Controller
 {
@@ -13,7 +14,9 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        //
+        $receipts = Receipt::all();
+        $totalSales = DB::table('receipts')->sum('total');
+        return view('sales', compact('receipts','totalSales'));
     }
 
     /**

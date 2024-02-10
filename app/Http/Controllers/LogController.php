@@ -13,7 +13,8 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+        $logs = Log::all();
+        return view ('log', compact('logs'));
     }
 
     /**

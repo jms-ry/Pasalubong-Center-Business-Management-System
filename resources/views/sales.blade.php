@@ -4,10 +4,10 @@
 <div class="container mt-4">
     <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
         <div>
-            <i class="bi bi-cart3" style="font-size: 3.5rem"></i>
+            <i class="bi bi-table" style="font-size: 3.5rem"></i>
         </div>
         <div class="ms-3">
-            <strong class="fs-2">Product Inventory</strong>
+            <strong class="fs-2">Product Sales</strong>
         </div>
     </div>
     <div class="card shadow">
@@ -23,14 +23,10 @@
                         <div class="col-auto">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                 <option selected>Filter by</option>
-                                <option value="2">Name</option>
-                                <option value="2">Quantity</option>
-                                <option value="2">Unit Price</option>
-                                <option value="2">Delivered Date</option>
+                                <option value="1">Customer Name</option>
+                                <option value="2">Cashier Name</option>
+                                <option value="2">Total Price</option>
                             </select>
-                        </div>
-                        <div class="col-auto">
-                            <a href="#" class="btn btn-sm btn-info fw-bold">Add New Product</a>
                         </div>
                     </div>
                 </div>
@@ -40,28 +36,32 @@
             <table class="table table-bordered fw-bold table-hover shadow text-center">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Delivered Date</th>
+                        <th>Receipt Number</th>
+                        <th>Customer Name</th>
+                        <th>Cashier Name</th>
+                        <th>Total Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
+                    @foreach($receipts as $receipt)
                         <tr>
-                            <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->quantity }}</td>
-                            <td>₱{{ number_format($product->unit_price, 2) }}</td>
-                            <td>{{ \Carbon\Carbon::parse($product->delivered_date)->format('M d, Y') }}</td>
+                            <td>{{ $receipt->id }}</td>
+                            <td>{{ $receipt->customer->first_name }},{{ $receipt->customer->last_name }}</td>
+                            <td>{{ $receipt->user->name }}</td>
+                            <td>₱{{number_format($receipt->total,2) }}</td>
                             <td>
-                                <button class="btn btn-info btn-sm">View Details</button>
-                                <button class="btn btn-warning btn-sm">Edit Details</button>
+                                <button class="btn btn-info btn-sm">View Receipt</button>
                             </td>
                         </tr>
                     @endforeach
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>TOTAL</td>
+                      <td>₱{{ number_format($totalSales, 2) }}</td>
+                      <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

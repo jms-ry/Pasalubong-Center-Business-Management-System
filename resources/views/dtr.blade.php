@@ -4,10 +4,10 @@
 <div class="container mt-4">
     <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
         <div>
-            <i class="bi bi-cart3" style="font-size: 3.5rem"></i>
+            <i class="bi bi-calendar-check" style="font-size: 3.5rem"></i>
         </div>
         <div class="ms-3">
-            <strong class="fs-2">Product Inventory</strong>
+            <strong class="fs-2">Daily Time Record</strong>
         </div>
     </div>
     <div class="card shadow">
@@ -23,14 +23,9 @@
                         <div class="col-auto">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                 <option selected>Filter by</option>
-                                <option value="2">Name</option>
-                                <option value="2">Quantity</option>
-                                <option value="2">Unit Price</option>
-                                <option value="2">Delivered Date</option>
+                                <option value="1">User Name</option>
+                                <option value="2">Logged Date</option>
                             </select>
-                        </div>
-                        <div class="col-auto">
-                            <a href="#" class="btn btn-sm btn-info fw-bold">Add New Product</a>
                         </div>
                     </div>
                 </div>
@@ -41,25 +36,20 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Delivered Date</th>
-                        <th>Action</th>
+                        <th>User Name</th>
+                        <th>Logged Date</th>
+                        <th>Signed In</th>
+                        <th>Signed Out</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
+                    @foreach($dtrs as $dtr)
                         <tr>
-                            <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->quantity }}</td>
-                            <td>₱{{ number_format($product->unit_price, 2) }}</td>
-                            <td>{{ \Carbon\Carbon::parse($product->delivered_date)->format('M d, Y') }}</td>
-                            <td>
-                                <button class="btn btn-info btn-sm">View Details</button>
-                                <button class="btn btn-warning btn-sm">Edit Details</button>
-                            </td>
+                            <td>{{ $dtr->id }}</td>
+                            <td>{{ $dtr->user->name }},{{ $dtr->user->role == 'admin' ? ' an' : ' a' }} {{ucfirst($dtr->user->role) }}</td>
+                            <td>{{ \Carbon\Carbon::parse($dtr->logged_date)->format('M d, Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($dtr->signed_in_time)->format('g:iA') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($dtr->signed_out_time)->format('g:iA') }}</td>
                         </tr>
                     @endforeach
                 </tbody>

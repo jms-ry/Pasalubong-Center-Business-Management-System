@@ -30,3 +30,6 @@ Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index
 Route::get('/suppliers', [App\Http\Controllers\SupplierController::class, 'index'])->name('suppliers');
 Route::get('/product-inventory', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
 Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
+Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
+Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
+Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');

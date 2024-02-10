@@ -13,7 +13,8 @@ class DtrController extends Controller
      */
     public function index()
     {
-        //
+        $dtrs = dtr::all();
+        return view('dtr', compact('dtrs'));
     }
 
     /**
