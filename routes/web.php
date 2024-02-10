@@ -33,3 +33,4 @@ Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->
 Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
 Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
 Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
+Route::get('/point-of-sale', [App\Http\Controllers\PosController::class, 'index'])->name('point-of-sale');

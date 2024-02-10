@@ -110,7 +110,7 @@
                             <span class="flex-grow-1">Dashboard</span>
                         </div>
                     </button>
-                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button">
+                    <button class="btn btn-lg btn-outline-success fw-bold text-light" type="button" onclick="window.location.href='/point-of-sale'">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-pc-display-horizontal me-2 fs-3"></i>
                             <span class="flex-grow-1">Point of Sales</span>
