@@ -13,7 +13,13 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::all();
+        $user = auth()->user();
+        if($user->role == 'admin'){
+            $logs = Log::paginate(10);
+        }
+        else{
+            $logs = Log::where('user_id', $user->id)->paginate(10);
+        }
         return view ('log', compact('logs'));
     }
 

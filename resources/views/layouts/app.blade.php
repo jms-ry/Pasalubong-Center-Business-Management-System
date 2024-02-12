@@ -30,6 +30,7 @@
                         {{ Session::get('status') }}
                     </div>
                 </div>
+            @else
             @endif
         </div>
            
@@ -66,22 +67,22 @@
         </script>
         @auth
             <nav class="navbar navbar-light bg-white shadow-sm ">
-                <button class="navbar-toggler ms-3 text-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <button class="navbar-toggler ms-4  text-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
                     <i class="bi bi-menu-button-wide-fill"></i>
                 </button>
                 <a class="navbar-brand text-primary fw-bold fs-4 mx-auto ">
                     VSU Pasalubong Center Business Management System
                 </a>
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav me-3">
+                <ul class="navbar-nav me-4">
                     @guest
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary fw-bold" href="#" role="button"          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary fw-bold" href="#" role="button"     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="position: absolute; z-index: 1000;">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

@@ -22,7 +22,7 @@
                     <div class="row g-2 justify-content-end">
                         <div class="col-auto">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>Filter by</option>
+                                <option selected>Sort by</option>
                                 <option value="1">User Name</option>
                                 <option value="2">Activity</option>
                                 <option value="2">Date and Time</option>
@@ -53,6 +53,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="container d-flex justify-content-end align-items-end fw-bold">
+                {{$logs->links()}}
+            </div>
         </div>
     </div>
 </div>

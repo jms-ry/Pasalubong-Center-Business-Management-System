@@ -22,7 +22,7 @@
                     <div class="row g-2 justify-content-end">
                         <div class="col-auto">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>Filter by</option>
+                                <option selected>Sort by</option>
                                 <option value="1">User Name</option>
                                 <option value="2">Logged Date</option>
                             </select>
@@ -49,11 +49,14 @@
                             <td>{{ $dtr->user->name }},{{ $dtr->user->role == 'admin' ? ' an' : ' a' }} {{ucfirst($dtr->user->role) }}</td>
                             <td>{{ \Carbon\Carbon::parse($dtr->logged_date)->format('M d, Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($dtr->signed_in_time)->format('g:iA') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($dtr->signed_out_time)->format('g:iA') }}</td>
+                            <td>{{ $dtr->signed_out_time ? \Carbon\Carbon::parse($dtr->signed_out_time)->format('g:iA') : '' }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="container d-flex justify-content-end align-items-end fw-bold">
+                {{$dtrs->links()}}
+            </div>
         </div>
     </div>
 </div>

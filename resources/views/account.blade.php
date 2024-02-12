@@ -22,7 +22,7 @@
                     <div class="row g-2 justify-content-end">
                         <div class="col-auto">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>Filter by</option>
+                                <option selected>Sort by</option>
                                 <option value="1">Name</option>
                                 <option value="2">Job Title</option>
                             </select>

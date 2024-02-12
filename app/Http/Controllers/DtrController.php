@@ -13,9 +13,19 @@ class DtrController extends Controller
      */
     public function index()
     {
-        $dtrs = dtr::all();
+        $user = auth()->user();
+    
+        if ($user->role == 'admin') {
+            $dtrs = Dtr::whereNotNull('signed_out_time')->paginate(10);
+        } else {
+            $dtrs = Dtr::where('user_id', $user->id)
+                       ->whereNotNull('signed_out_time')
+                       ->paginate(10);
+        }
+    
         return view('dtr', compact('dtrs'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
