@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (auth()->check()) {
-        Session::flash('status', 'Access denied. You are already logged in.');
+        Session::flash('warning', 'Access denied. You are already logged in.');
         return back();
     }
     return view('welcome');

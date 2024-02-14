@@ -19,9 +19,9 @@ return new class extends Migration
             $table->decimal('total', 10, 2);
             $table->timestamps();
         
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
         
     }

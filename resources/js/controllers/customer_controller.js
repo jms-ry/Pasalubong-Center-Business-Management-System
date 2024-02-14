@@ -8,7 +8,7 @@ export default class extends Controller {
         console.log('Customer Controller connected!');
     }
 
-    updateModal(event) {
+    viewCustomerModal(event) {
         const customerData = event.currentTarget.dataset.customer;
 
         if (customerData) {

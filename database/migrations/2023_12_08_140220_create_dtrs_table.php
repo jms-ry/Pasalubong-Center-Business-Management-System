@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('logged_date');
             $table->time('signed_in_time');
-            $table->time('signed_out_time');
+            $table->time('signed_out_time')->nullable();
             $table->timestamps();
         
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
         
     }

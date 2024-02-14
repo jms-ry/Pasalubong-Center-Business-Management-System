@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email_address');
             $table->timestamps();
         
-            $table->foreign('address_id')->references('id')->on('addresses')->nullable();
+            $table->foreign('address_id')->references('id')->on('addresses')->nullable()->onDelete('cascade');
         });
         
     }

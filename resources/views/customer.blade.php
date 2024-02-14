@@ -56,14 +56,15 @@
                             <td>{{ $customer->last_name }}</td>
                             <td>{{ $customer->email_address }}</td>
                             <td>
-                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewCustomerModal" data-action="click->customer#updateModal" data-customer="{{ json_encode($customer) }}">View Profile</button>
-                                <button class="btn btn-warning btn-sm">Edit Profile</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewCustomerModal" data-action="click->customer#viewCustomerModal" data-customer="{{ json_encode($customer) }}">View Profile</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#editCustomerModal"class="btn btn-warning btn-sm">Edit Profile</button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             @include('modals.view_customer_modal')
+            @include('modals.edit_customer_modal')
             <div class="container d-flex justify-content-end align-items-end fw-bold">
                 {{$customers->links()}}
             </div>

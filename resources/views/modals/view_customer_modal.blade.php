@@ -9,13 +9,13 @@
                     <div class="col-6">
                         <div class="mb-3 fw-bold">
                             <label for="first_name" class="form-label">First Name: </label>
-                            <span class= "text-white fw-bold" data-target="customer.firstName"></span>
+                            <span class= "ms-2 text-white fw-bold" data-target="customer.firstName"></span>
                         </div>
                     </div>
                     <div class="col-6 fw-bold">
                         <div class="mb-3">
                             <label for="last_name" class="form-label">Last Name: </label>
-                            <span class= "text-white fw-bold" data-target="customer.lastName"></span>
+                            <span class= "ms-2 text-white fw-bold" data-target="customer.lastName"></span>
                         </div>
                     </div>
                 </div>
@@ -29,13 +29,13 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="streetOne" class="form-label">Street One: </label>
-                            <span class= "text-white fw-bold" data-target="customer.streetOne"></span>
+                            <span class= "ms-2 text-white fw-bold" data-target="customer.streetOne"></span>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="streetTwo" class="form-label">Street Two: </label>
-                            <span  class= "text-white fw-bold" data-target="customer.streetTwo"></span>
+                            <span  class= "ms-2 text-white fw-bold" data-target="customer.streetTwo"></span>
                         </div>
                     </div>
                 </div>
@@ -43,23 +43,27 @@
                     <div class="col-6 fw-bold">
                         <div class="mb-3">
                             <label for="municipality" class="form-label">Municipality: </label>
-                            <span class= "text-white fw-bold" data-target="customer.municipality"></span>
+                            <span class= "ms-2 text-white fw-bold" data-target="customer.municipality"></span>
                         </div>
                     </div>
                     <div class="col-6 fw-bold">
                         <div class="mb-3">
                             <label for="zipCode" class="form-label">Zip Code: </label>
-                            <span class= "text-white fw-bold" data-target="customer.zipCode"></span>
+                            <span class= "ms-2 text-white fw-bold" data-target="customer.zipCode"></span>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="city" class="form-label">City: </label>
-                        <span class= "text-white fw-bold" data-target="customer.city"></span>
+                        <span class= "ms-2 text-white fw-bold" data-target="customer.city"></span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger">Delete</button>
+                <form action="{{ route('customers.destroy', $customer->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete</button>
+                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->dateTime('restock_date')->nullable();
             $table->timestamps();
         
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
         });
         
     }
