@@ -23,14 +23,16 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees');
+    Route::resource('customers', App\Http\Controllers\CustomerController::class);
+    Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
+    Route::get('/suppliers', [App\Http\Controllers\SupplierController::class, 'index'])->name('suppliers');
+    Route::get('/product-inventory', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
+    Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
+    Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
+    Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
+    Route::get('/point-of-sale', [App\Http\Controllers\PosController::class, 'index'])->name('point-of-sale');
+});
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees');
-Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
-Route::get('/suppliers', [App\Http\Controllers\SupplierController::class, 'index'])->name('suppliers');
-Route::get('/product-inventory', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
-Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
-Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
-Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
-Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
-Route::get('/point-of-sale', [App\Http\Controllers\PosController::class, 'index'])->name('point-of-sale');

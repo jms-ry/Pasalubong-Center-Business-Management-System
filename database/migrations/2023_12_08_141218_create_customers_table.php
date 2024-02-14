@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email_address');
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamps();
         
-            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('address_id')->references('id')->on('addresses')->nullable();
         });
         
     }

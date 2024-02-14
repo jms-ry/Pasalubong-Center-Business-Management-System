@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->enum('role', ['admin', 'cashier']);
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('address_id')->references('id')->on('addresses')->nullable();
         });
     }
 

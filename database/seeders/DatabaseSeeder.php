@@ -199,7 +199,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Dried mango slices, a tropical treat',
             'unit' => 'pack',
             'quantity' => 100,
-            'unit_price' => 5.99
+            'unit_price' => 5.99,
+            'delivered_date' => '2023-01-01'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -209,7 +210,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'A unique coffee blend from the region.',
             'unit' => 'box',
             'quantity' => 100,
-            'unit_price' => 8.49
+            'unit_price' => 8.49,
+            'delivered_date' => '2023-11-11'
         ]);
 
         
@@ -220,7 +222,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Colorful scarf showcasing local craftsmanship.',
             'unit' => 'piece',
             'quantity' => 100,
-            'unit_price' => 12.99
+            'unit_price' => 12.99,
+            'delivered_date' => '2023-05-16'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -230,7 +233,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Colorful scarf showcasing local craftsmanship.',
             'unit' => 'piece',
             'quantity' => 100,
-            'unit_price' => 12.99
+            'unit_price' => 12.99,
+            'delivered_date' => '2023-08-21'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -240,7 +244,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Chocolate-covered coconut bites',
             'unit' => 'pack',
             'quantity' => 100,
-            'unit_price' => 4.99
+            'unit_price' => 4.99,
+            'delivered_date' => '2023-05-11'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -250,7 +255,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Locally made pineapple jam in a charming jar.',
             'unit' => 'bottle',
             'quantity' => 100,
-            'unit_price' => 7.99
+            'unit_price' => 7.99,
+            'delivered_date' => '2023-12-11'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -260,7 +266,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Handkerchief featuring traditional batik prints.',
             'unit' => 'piece',
             'quantity' => 100,
-            'unit_price' => 3.99
+            'unit_price' => 3.99,
+            'delivered_date' => '2023-08-22'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -270,7 +277,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Honey infused with local turmeric.',
             'unit' => 'bottle',
             'quantity' => 100,
-            'unit_price' => 9.99
+            'unit_price' => 9.99,
+            'delivered_date' => '2023-10-11'
         ]);
 
         
@@ -281,7 +289,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Pili nuts coated in sweet caramel.',
             'unit' => 'pack',
             'quantity' => 100,
-            'unit_price' => 11.99
+            'unit_price' => 11.99,
+            'delivered_date' => '2023-04-11'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -291,7 +300,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Handmade necklace featuring tribal designs.',
             'unit' => 'piece',
             'quantity' => 100,
-            'unit_price' => 14.99
+            'unit_price' => 14.99,
+            'delivered_date' => '2023-08-22'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -301,7 +311,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Tangy tamarind candies in a vibrant pack.',
             'unit' => 'pack',
             'quantity' => 100,
-            'unit_price' => 3.99
+            'unit_price' => 3.99,
+            'delivered_date' => '2023-11-11'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -311,7 +322,8 @@ class DatabaseSeeder extends Seeder
             'description' => 'Sweet and purple yam jam in a jar.',
             'unit' => 'bottle',
             'quantity' => 100,
-            'unit_price' => 10.99
+            'unit_price' => 10.99,
+            'delivered_date' => '2023-06-11'
         ]);
     }
 }
