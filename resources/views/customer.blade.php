@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body bg-dark">
+        <div class="card-body bg-dark" data-controller="customer">
             <table class="table table-bordered fw-bold table-hover shadow text-center">
                 <thead>
                     <tr>
@@ -56,7 +56,7 @@
                             <td>{{ $customer->last_name }}</td>
                             <td>{{ $customer->email_address }}</td>
                             <td>
-                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewCustomerModal">View Profile</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewCustomerModal" data-action="click->customer#updateModal" data-customer="{{ json_encode($customer) }}">View Profile</button>
                                 <button class="btn btn-warning btn-sm">Edit Profile</button>
                             </td>
                         </tr>

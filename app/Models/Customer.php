@@ -14,12 +14,13 @@ class Customer extends Model
     protected $fillable =[
         'first_name',
         'last_name',
-        'email_address'
+        'email_address',
+        'address_id'
     ];
 
     public function address(): HasOne
     {
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class, 'id', 'address_id');
     }
 
     public function orders(): HasMany
