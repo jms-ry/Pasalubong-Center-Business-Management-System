@@ -60,7 +60,7 @@ class LoginController extends Controller
             'logged_date' => now()->toDateString(),
             'logged_time' => now()->toDateTimeString(),
         ]);
-        Session::flash('status', 'Welcome, ' . $user->name . '! You have successfully logged in.');
+        Session::flash('success', 'Welcome, ' . $user->name . '! You have successfully logged in.');
         return redirect()->intended($this->redirectTo);
     }
 

@@ -41,6 +41,30 @@ class DatabaseSeeder extends Seeder
             'city' => "NY",
             'zip_code' => "32234" 
         ]);
+        \App\Models\Address::factory()->create([
+            'id' => 4,
+            'street_one' => "113 Main St",
+            'street_two' => "Apt. 106",
+            'municipality' => "Newtown",
+            'city' => "NYC",
+            'zip_code' => "325464" 
+        ]);
+        \App\Models\Address::factory()->create([
+            'id' => 5,
+            'street_one' => "152 Main St",
+            'street_two' => "Apt. 126",
+            'municipality' => "Newtown",
+            'city' => "BKN",
+            'zip_code' => "3324" 
+        ]);
+        \App\Models\Address::factory()->create([
+            'id' => 6,
+            'street_one' => "133 Main St",
+            'street_two' => "Apt. 226",
+            'municipality' => "Boston",
+            'city' => "DC",
+            'zip_code' => "35434" 
+        ]);
 
         // User seeders
         \App\Models\User::factory()->create([
@@ -120,7 +144,7 @@ class DatabaseSeeder extends Seeder
             'first_name'=>'Oliwian',
             'last_name'=>'Stanton',
             'email_address'=>'oliwian@email.com',
-            'address_id'=> 1,
+            'address_id'=> 4,
         ]);
 
         
@@ -129,7 +153,7 @@ class DatabaseSeeder extends Seeder
             'first_name'=>'Hussain',
             'last_name'=>'Marshall',
             'email_address'=>'hussain@email.com',
-            'address_id'=> 2,
+            'address_id'=> 5,
         ]);
 
         
@@ -138,7 +162,7 @@ class DatabaseSeeder extends Seeder
             'first_name'=>'Alana',
             'last_name'=>'Giles',
             'email_address'=>'alana@email.com',
-            'address_id'=> 3,
+            'address_id'=> 6,
         ]);
 
         //Supplier seeders
@@ -169,7 +193,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Supplier::factory()->create([
             'id' => 4,
-            'address_id' => 1,
+            'address_id' => 4,
             'company_name' => 'Gaisano Supermart',
             'company_abbreviation' => 'Gaisano',
             'email_address' => 'gaisano@email.com',
@@ -177,7 +201,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Supplier::factory()->create([
            'id' => 5,
-           'address_id' => 2,
+           'address_id' => 5,
            'company_name' => 'Robinsons Supermarket',
            'company_abbreviation' => 'Robinsons',
            'email_address' => 'robinsons@email.com',
@@ -185,7 +209,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Supplier::factory()->create([
             'id' => 6,
-            'address_id' => 3,
+            'address_id' => 6,
             'company_name' => 'Hussain Store',
             'company_abbreviation' => 'Hussain',
             'email_address' => 'hussain@email.com',

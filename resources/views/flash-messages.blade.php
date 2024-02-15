@@ -29,6 +29,7 @@
 @if ($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Please check the form below for errors</strong>
+  <strong>{{ $errors }}</strong>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif

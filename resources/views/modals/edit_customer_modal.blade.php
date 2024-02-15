@@ -12,19 +12,19 @@
             <div class="col-6">
               <div class="mb-3 fw-bold">
                 <label for="first_name" class="form-label">First Name</label>
-                <input type="text" class="form-control fw-bold text-dark" id="first_name" name="first_name" value="{{$customer->first_name}}">
+                <input type="text" class="form-control fw-bold text-dark" id="first_name" name="first_name" data-customer-target="customerFirstName">
               </div>
             </div>
             <div class="col-6 fw-bold">
               <div class="mb-3">
                 <label for="last_name" class="form-label">Last Name</label>
-                  <input type="text" class="form-control fw-bold text-dark" id="last_name" name="last_name" value="{{$customer->last_name}}">
+                  <input type="text" class="form-control fw-bold text-dark" id="last_name" name="last_name" data-customer-target="customerLastName">
               </div>
             </div>
           </div>
           <div class="mb-3 fw-bold">
             <label for="email_address" class="form-label">Email</label>
-            <input type="email_address" class="form-control fw-bold text-dark" id="email_address" name="email_address" value="{{$customer->email_address}}">
+            <input type="email_address" class="form-control fw-bold text-dark" id="email_address" name="email_address" data-customer-target="customerEmail">
           </div>
           <hr class="fw-bold text-white"></hr>
           <h6 class="mt-2 fw-bold text-light">Address Information</h6>
@@ -32,13 +32,13 @@
             <div class="col-6">
               <div class="mb-3">
                 <label for="streetOne" class="form-label">Street One</label>
-                <input type="text" class="form-control fw-bold text-dark" id="streetOne" name="streetOne" value="{{$customer->address->street_one}}">
+                <input type="text" class="form-control fw-bold text-dark" id="streetOne" name="streetOne" data-customer-target="customerStreetOne">
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
                 <label for="streetTwo" class="form-label">Street Two</label>
-                  <input type="text" class="form-control fw-bold text-dark" id="streetTwo" name="streetTwo" value="{{$customer->address->street_two}}">
+                  <input type="text" class="form-control fw-bold text-dark" id="streetTwo" name="streetTwo"data-customer-target="customerStreetTwo">
               </div>
             </div>
           </div>
@@ -46,19 +46,19 @@
             <div class="col-4 fw-bold">
               <div class="mb-3">
                 <label for="municipality" class="form-label">Municipality</label>
-                <input type="text" class="form-control fw-bold text-dark" id="municipality" name="municipality" value="{{$customer->address->municipality}}">
+                <input type="text" class="form-control fw-bold text-dark" id="municipality" name="municipality" data-customer-target="customerMunicipality">
               </div>
             </div>
             <div class="col-4 fw-bold">
               <div class="mb-3">
                 <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control fw-bold text-dark" id="city" name="city" value="{{$customer->address->city}}">
+                <input type="text" class="form-control fw-bold text-dark" id="city" name="city" data-customer-target="customerCity">
               </div>
             </div>
             <div class="col-4 fw-bold">
               <div class="mb-3">
                 <label for="zipCode" class="form-label">Zip Code</label>
-                <input type="text" class="form-control fw-bold text-dark" id="zipCode" name="zipCode" value="{{$customer->address->zip_code}}">
+                <input type="text" class="form-control fw-bold text-dark" id="zipCode" name="zipCode" data-customer-target="customerZipCode">
               </div>
             </div>
           </div>

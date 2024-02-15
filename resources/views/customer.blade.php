@@ -57,7 +57,7 @@
                             <td>{{ $customer->email_address }}</td>
                             <td>
                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewCustomerModal" data-action="click->customer#viewCustomerModal" data-customer="{{ json_encode($customer) }}">View Profile</button>
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#editCustomerModal"class="btn btn-warning btn-sm">Edit Profile</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#editCustomerModal" data-action="click->customer#editCustomerModal" data-customer="{{ json_encode($customer) }}" class="btn btn-warning btn-sm" >Edit Profile</button>
                             </td>
                         </tr>
                     @endforeach

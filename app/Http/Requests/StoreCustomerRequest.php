@@ -25,11 +25,6 @@ class StoreCustomerRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email_address' => 'required|email|unique:customers,email_address',
-            'streetOne' => 'required|string|max:255',
-            'streetTwo' => 'nullable|string|max:255',
-            'municipality' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'zipCode' => 'required|string|max:20',
         ];
     }
 }

@@ -80,32 +80,32 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Customer $customer)
-{
-    // Check if the customer has an associated address
-    if ($customer->address) {
-        // Delete the associated address
-        $customer->address->delete();
+    {
+        // Check if the customer has an associated address
+        if ($customer->address) {
+            // Delete the associated address
+            $customer->address->delete();
+        }
+
+        // Delete the customer
+        $customer->delete();
+
+        //Create log for the deleting customer
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Deleted customer, ' . $customer->first_name . ' ' . $customer->last_name,
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer was deleted successfully.');
     }
-
-    // Delete the customer
-    $customer->delete();
-
-    //Create log for the deleting customer
-    DB::table('logs')->insert([
-        'user_id' => Auth::id(),
-        'action' => 'Deleted customer, ' . $customer->first_name . ' ' . $customer->last_name,
-        'logged_date' => now()->toDateString(),
-        'logged_time' => now()->toTimeString(),
-    ]);
-
-    return redirect()->route('customers.index')
-        ->with('success', 'Customer was deleted successfully.');
-}
 }
