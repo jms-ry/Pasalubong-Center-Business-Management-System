@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="customer"
 export default class extends Controller {
-    static targets = ['firstName', 'lastName', 'email', 'streetOne', 'streetTwo', 'municipality', 'city', 'zipCode','customerFirstName', 'customerLastName', 'customerEmail', 'customerStreetOne', 'customerStreetTwo', 'customerMunicipality', 'customerCity', 'customerZipCode'];
+    static targets = ['firstName', 'lastName', 'email', 'streetOne', 'streetTwo', 'municipality', 'city', 'zipCode','customerId','customerFirstName', 'customerLastName', 'customerEmail', 'customerStreetOne', 'customerStreetTwo', 'customerMunicipality', 'customerCity', 'customerZipCode'];
 
     connect() {
         console.log('Customer Controller connected!');
@@ -45,6 +45,7 @@ export default class extends Controller {
         {
             const customer = JSON.parse(customerData);
 
+            this.customerIdTarget.value = customer.id || '';
             this.customerFirstNameTarget.value = customer.first_name || '';
             this.customerLastNameTarget.value= customer.last_name || '';
             this.customerEmailTarget.value = customer.email_address || '';
@@ -61,11 +62,11 @@ export default class extends Controller {
             }
             else
             {
-                this.streetOneTarget.textContent = '';
-                this.streetTwoTarget.textContent = '';
-                this.municipalityTarget.textContent = '';
-                this.cityTarget.textContent = '';
-                this.zipCodeTarget.textContent = '';
+                this.streetOneTarget.value = '';
+                this.streetTwoTarget.value = '';
+                this.municipalityTarget.value = '';
+                this.cityTarget.value = '';
+                this.zipCodeTarget.value = '';
             }
         }
     }
