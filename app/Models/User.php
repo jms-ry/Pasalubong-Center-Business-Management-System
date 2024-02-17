@@ -22,7 +22,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
+        'address_id'
     ];
 
     /**
@@ -45,9 +47,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function addresses(): HasOne
+    public function address(): HasOne
     {
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class,'id','address_id');
     }
 
     public function dtrs(): HasMany
@@ -65,8 +67,8 @@ class User extends Authenticatable
         return $this->hasMany(Receipt::class);
     }
 
-    public function employees(): HasMany
+    public function employee(): HasOne
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasOne(Employee::class);
     }
 }

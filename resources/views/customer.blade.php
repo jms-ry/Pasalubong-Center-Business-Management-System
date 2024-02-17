@@ -32,7 +32,7 @@
                             <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addCustomerModal">Add New Customer</button>
                         </div>
                         <!--Add customer Modal-->
-                        @include('modals.add_customer_modal')
+                        @include('modals.customer.add_customer_modal')
                     </div>
                 </div>
             </div>
@@ -63,8 +63,8 @@
                     @endforeach
                 </tbody>
             </table>
-            @include('modals.view_customer_modal')
-            @include('modals.edit_customer_modal')
+            @include('modals.customer.view_customer_modal')
+            @include('modals.customer.edit_customer_modal')
             <div class="container d-flex justify-content-end align-items-end fw-bold">
                 {{$customers->links()}}
             </div>

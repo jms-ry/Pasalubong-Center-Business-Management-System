@@ -2,13 +2,14 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
       <div class="modal-header">
-        <h6 class="mt-2 fw-bold text-light">Edit Customer's Personal Information</h6>
+        <h4>Edit Employee's Information</h4>
       </div>
       <form method="POST" action="{{ route('customers.update', ['customer' => '__CUSTOMER_ID__']) }}" id="editCustomerForm">
         @csrf
         @method('PUT')
         <div class="modal-body">
           <div class="row g-2">
+            <h6 class="mt-2 fw-bold text-light">Edit Customer's Personal Information</h6>
             <div class="col-6">
               <div class="mb-3 fw-bold">
                 <label for="first_name" class="form-label">First Name</label>

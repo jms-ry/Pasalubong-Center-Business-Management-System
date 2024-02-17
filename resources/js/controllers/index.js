@@ -8,5 +8,8 @@ import { application } from '../libs/stimulus'
 import CustomerController from './customer_controller'
 application.register('customer', CustomerController)
 
+import EmployeeController from './employee_controller'
+application.register('employee', EmployeeController)
+
 import HelloController from './hello_controller'
 application.register('hello', HelloController)

@@ -2,11 +2,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h6 class="mt-2 fw-bold text-light">Customer's Personal Information</h6>
+                <h4>Add/Create New Customer</h4>
             </div>
             <form action="{{ route('customers.store') }}" method="POST" id="addCustomerForm">
                 @csrf
                 <div class="modal-body">
+                    <h6 class="mt-2 fw-bold text-light">Customer's Personal Information</h6>
                     <div class="row g-2">
                         <div class="col-6">
                             <div class="mb-3 fw-bold">

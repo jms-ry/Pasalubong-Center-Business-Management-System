@@ -25,7 +25,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-    Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees');
+    Route::resource('employees', App\Http\Controllers\EmployeeController::class);
     Route::resource('customers', App\Http\Controllers\CustomerController::class);
     Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
     Route::get('/suppliers', [App\Http\Controllers\SupplierController::class, 'index'])->name('suppliers');
