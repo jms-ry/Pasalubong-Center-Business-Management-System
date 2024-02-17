@@ -80,7 +80,24 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        
+        $customer = Customer::with('address')->find($customer->id);
+        $customer->update($request->only(['first_name', 'last_name', 'email_address']));
+       // Update address details
+        if ($customer->address) {
+            $customer->address->update($request->only(['street_one', 'street_two', 'municipality', 'city', 'zip_code']));
+        } else {
+            // If no address exists, create a new one
+            $customer->address()->create($request->only(['street_one', 'street_two', 'municipality', 'city', 'zip_code']));
+        }
+
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Updated customer whose id is ' . $customer->id . '',
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+
+        return redirect()->route('customers.index')->with('success','Customer was updated successfully');
     }
 
     /**

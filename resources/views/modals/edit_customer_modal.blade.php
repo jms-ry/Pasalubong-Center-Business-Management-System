@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h6 class="mt-2 fw-bold text-light">Edit Customer's Personal Information</h6>
       </div>
-      <form method="POST" action="{{ route('customers.update', ['customer' => $customer->id]) }}">
+      <form method="POST" action="{{ route('customers.update', ['customer' => '__CUSTOMER_ID__']) }}" id="editCustomerForm">
         @csrf
         @method('PUT')
         <div class="modal-body">
@@ -32,13 +32,13 @@
             <div class="col-6">
               <div class="mb-3">
                 <label for="streetOne" class="form-label">Street One</label>
-                <input type="text" class="form-control fw-bold text-dark" id="streetOne" name="streetOne" data-customer-target="customerStreetOne">
+                <input type="text" class="form-control fw-bold text-dark" id="street_one" name="street_one" data-customer-target="customerStreetOne">
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
                 <label for="streetTwo" class="form-label">Street Two</label>
-                  <input type="text" class="form-control fw-bold text-dark" id="streetTwo" name="streetTwo"data-customer-target="customerStreetTwo">
+                  <input type="text" class="form-control fw-bold text-dark" id="street_two" name="street_two"data-customer-target="customerStreetTwo">
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
             <div class="col-4 fw-bold">
               <div class="mb-3">
                 <label for="zipCode" class="form-label">Zip Code</label>
-                <input type="text" class="form-control fw-bold text-dark" id="zipCode" name="zipCode" data-customer-target="customerZipCode">
+                <input type="text" class="form-control fw-bold text-dark" id="zip_code" name="zip_code" data-customer-target="customerZipCode">
               </div>
             </div>
           </div>

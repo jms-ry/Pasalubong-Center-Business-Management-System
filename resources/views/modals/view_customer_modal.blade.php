@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <form action="{{ route('customers.destroy', $customer->id) }}" method="post">
+                <form action="{{ route('customers.destroy', ['customer' => '__CUSTOMER_ID__']) }}" method="post" id="deleteCustomerForm">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete</button>

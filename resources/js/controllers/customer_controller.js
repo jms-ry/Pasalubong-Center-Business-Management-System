@@ -10,9 +10,12 @@ export default class extends Controller {
 
     viewCustomerModal(event) {
         const customerData = event.currentTarget.dataset.customer;
-
+        const customerId = event.currentTarget.dataset.customerId;
         if (customerData) {
             const customer = JSON.parse(customerData);
+
+            const deleteForm = this.element.querySelector('#deleteCustomerForm');
+            deleteForm.action = deleteForm.action.replace('__CUSTOMER_ID__', customerId);
 
             this.firstNameTarget.textContent = customer.first_name || '';
             this.lastNameTarget.textContent = customer.last_name || '';
@@ -40,12 +43,14 @@ export default class extends Controller {
 
     editCustomerModal(event) {
         const customerData = event.currentTarget.dataset.customer;
+        const customerId = event.currentTarget.dataset.customerId;
 
         if(customerData)
         {
             const customer = JSON.parse(customerData);
+            const editForm = this.element.querySelector('#editCustomerForm');
+            editForm.action = editForm.action.replace('__CUSTOMER_ID__', customerId);
 
-            this.customerIdTarget.value = customer.id || '';
             this.customerFirstNameTarget.value = customer.first_name || '';
             this.customerLastNameTarget.value= customer.last_name || '';
             this.customerEmailTarget.value = customer.email_address || '';
