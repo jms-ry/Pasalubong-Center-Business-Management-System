@@ -33,13 +33,13 @@
             <div class="row g-2 fw-bold">
               <div class="col-6">
                 <div class="mb-3">
-                  <label for="streetOne" class="form-label">Street One</label>
+                  <label for="street_one" class="form-label">Street One</label>
                   <input type="text" class="form-control" id="street_one" name="street_one" required placeholder="Street One">
                 </div>
               </div>
               <div class="col-6">
                 <div class="mb-3">
-                  <label for="streetTwo" class="form-label">Street Two</label>
+                  <label for="street_two" class="form-label">Street Two</label>
                   <input type="text" class="form-control" id="street_two" name="street_two" placeholder="Street Two">
                 </div>
               </div>
@@ -59,7 +59,7 @@
               </div>
               <div class="col-4 fw-bold">
                 <div class="mb-3">
-                  <label for="zipCode" class="form-label">Zip Code</label>
+                  <label for="zip_code" class="form-label">Zip Code</label>
                   <input type="text" class="form-control" id="zip_code" name="zip_code" required placeholder="Zip Code">
                 </div>
               </div>

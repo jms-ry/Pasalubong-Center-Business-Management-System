@@ -27,8 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('employees', App\Http\Controllers\EmployeeController::class);
     Route::resource('customers', App\Http\Controllers\CustomerController::class);
+    Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
     Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
-    Route::get('/suppliers', [App\Http\Controllers\SupplierController::class, 'index'])->name('suppliers');
     Route::get('/product-inventory', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
     Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
     Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');

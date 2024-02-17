@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use App\Models\Address;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -13,7 +16,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::all();
+        $suppliers = Supplier::with('address')->paginate(5);
         return view('supplier', compact('suppliers'));
     }
 
@@ -30,7 +33,29 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        //
+        $address = Address::create([
+            'street_one' => $request->input('street_one'),
+            'street_two' => $request->input('street_two'),
+            'municipality' => $request->input('municipality'),
+            'city' => $request->input('city'),
+            'zip_code' => $request->input('zip_code'),
+        ]);
+
+        $supplier = Supplier::create([
+            'company_name' => $request->input('company_name'),
+            'company_abbreviation' => $request->input('company_abbreviation'),
+            'email_address' => $request->input('email_address'),
+            'address_id' => $address->id,
+        ]);
+
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Created new supplier, ' . $supplier->company_name,
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier was created successfully');
     }
 
     /**
@@ -54,7 +79,23 @@ class SupplierController extends Controller
      */
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        //
+        $supplier = Supplier::with('address')->find($supplier->id);
+        $supplier->update($request->only(['company_name', 'company_abbreviation', 'email_address']));
+
+        if($supplier->address){
+            $supplier->address->update($request->only(['street_one', 'street_two', 'municipality', 'city', 'zip_code']));
+        }else{
+            $supplier->address()->create($request->only(['street_one', 'street_two', 'municipality', 'city', 'zip_code']));
+        }
+
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Updated supplier whose id is ' . $supplier->id . '',
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+
+        return redirect()->route('suppliers.index')->with('success','Supplier was updated successfully');
     }
 
     /**
@@ -62,6 +103,19 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        if($supplier->address) {
+            $supplier->address->delete();
+        }
+
+        $supplier->delete();
+
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Deleted supplier, ' . $supplier->company_name,
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+
+        return redirect()->route('suppliers.index')->with('success','Supplier was deleted successfully');
     }
 }

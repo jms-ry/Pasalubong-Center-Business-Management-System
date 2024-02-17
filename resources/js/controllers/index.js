@@ -13,3 +13,6 @@ application.register('employee', EmployeeController)
 
 import HelloController from './hello_controller'
 application.register('hello', HelloController)
+
+import SupplierController from './supplier_controller'
+application.register('supplier', SupplierController)

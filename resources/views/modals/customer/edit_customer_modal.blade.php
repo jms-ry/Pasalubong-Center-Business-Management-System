@@ -28,7 +28,7 @@
             <input type="email_address" class="form-control fw-bold text-dark" id="email_address" name="email_address" data-customer-target="customerEmail">
           </div>
           <hr class="fw-bold text-white"></hr>
-          <h6 class="mt-2 fw-bold text-light">Address Information</h6>
+          <h6 class="mt-2 fw-bold text-light">Edit Customer's Address Information</h6>
           <div class="row g-2 fw-bold">
             <div class="col-6">
               <div class="mb-3">

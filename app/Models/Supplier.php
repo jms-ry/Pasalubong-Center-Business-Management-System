@@ -11,9 +11,16 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    public function addresses() : HasOne
+    protected $fillable = [
+        'company_name',
+        'company_abbreviation',
+        'email_address',
+        'address_id',
+    ];
+
+    public function address() : HasOne
     {
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class,'id','address_id');
     }
 
     public function products() : HasMany
