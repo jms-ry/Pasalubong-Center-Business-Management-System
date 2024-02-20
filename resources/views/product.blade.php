@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@push('style')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endpush
 <div class="container mt-4">
     <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
         <div>
@@ -30,8 +33,9 @@
                             </select>
                         </div>
                         <div class="col-auto">
-                            <a href="#" class="btn btn-sm btn-info fw-bold">Add New Product</a>
+                            <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</button>
                         </div>
+                        @include('modals.product.add_product_modal')
                     </div>
                 </div>
             </div>
@@ -64,7 +68,16 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="container d-flex justify-content-end align-items-end fw-bold">
+                {{$products->links()}}
+            </div>
         </div>
     </div>
 </div>
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("input[type=datetime-local]");
+</script>
+@endpush
 @endsection

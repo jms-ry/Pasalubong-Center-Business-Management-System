@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -13,8 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('product', compact('products'));
+        $products = Product::with('supplier')->paginate(5);
+        $suppliers = Supplier::all();
+        return view('product', compact('products', 'suppliers'));
     }
 
     /**
@@ -30,7 +34,15 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $product = Product::create($request->all());
+
+        DB::table('logs')->insert([
+            'user_id' =>Auth::id(),
+            'action' => 'Created new product, ' . $product->name,
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+        return redirect()->route('products.index')->with('success', 'Product was created successfully');
     }
 
     /**

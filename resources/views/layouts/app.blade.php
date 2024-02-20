@@ -14,7 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     
-    
+    @stack('style')
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -133,7 +133,7 @@
                     </button>
                     <div class="collapse" id="salesManagementCollapse">
                         <div class="card card-body d-grid gap-2 bg-light">
-                        <button class="btn btn-sm btn-outline-info fw-bold text-dark" type="button" onclick="window.location.href='/product-inventory'">
+                        <button class="btn btn-sm btn-outline-info fw-bold text-dark" type="button" onclick="window.location.href='/products'">
                                 <div class="d-flex align-items-center ">
                                     <i class="bi bi-cart3 me-2 fs-3"></i>
                                     <span class="flex-grow-1">Product Inventory</span>
@@ -188,5 +188,6 @@
             </footer>
         @endauth
     </div>
+    @stack('scripts')
 </body>
 </html>

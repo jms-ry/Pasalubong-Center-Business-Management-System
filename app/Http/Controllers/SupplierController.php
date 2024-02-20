@@ -103,6 +103,10 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+        if ($supplier->products()->where('quantity', '>', 0)->exists()) {
+            return redirect()->route('suppliers.index')->with('error', 'Supplier has associated products with quantity greater than 0. Unable to delete.');
+        }
+        
         if($supplier->address) {
             $supplier->address->delete();
         }

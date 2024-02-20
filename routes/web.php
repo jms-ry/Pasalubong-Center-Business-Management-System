@@ -28,8 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('employees', App\Http\Controllers\EmployeeController::class);
     Route::resource('customers', App\Http\Controllers\CustomerController::class);
     Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
+    Route::resource('products', App\Http\Controllers\ProductController::class);
     Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
-    Route::get('/product-inventory', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
     Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
     Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
     Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
