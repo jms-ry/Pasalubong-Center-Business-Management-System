@@ -9,6 +9,7 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class EmployeeController extends Controller
 {
@@ -17,6 +18,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
+        }
         $employees = Employee::with('user.address')->paginate(5);
 
         return view('employee', compact('employees'));

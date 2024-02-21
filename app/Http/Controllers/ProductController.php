@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
+        }
         $products = Product::with('supplier')->paginate(5);
         $suppliers = Supplier::all();
         return view('product', compact('products', 'suppliers'));

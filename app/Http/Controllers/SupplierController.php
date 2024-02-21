@@ -8,6 +8,7 @@ use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class SupplierController extends Controller
 {
@@ -16,6 +17,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
+        }
         $suppliers = Supplier::with('address')->paginate(5);
         return view('supplier', compact('suppliers'));
     }
