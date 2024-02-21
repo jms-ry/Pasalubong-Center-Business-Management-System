@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,19 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'bar_code' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('products', 'bar_code')->ignore($this->route('product')),
+            ],
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'unit' => 'required|string|max:50',
+            'unit_price' => 'required|numeric|min:1',
+            'quantity' => 'required|integer|min:1',
+            'delivered_date' => 'required|date',
+            'supplier_id' => 'required|exists:suppliers,id',
         ];
     }
 }

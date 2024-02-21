@@ -14,5 +14,8 @@ application.register('employee', EmployeeController)
 import HelloController from './hello_controller'
 application.register('hello', HelloController)
 
+import ProductController from './product_controller'
+application.register('product', ProductController)
+
 import SupplierController from './supplier_controller'
 application.register('supplier', SupplierController)

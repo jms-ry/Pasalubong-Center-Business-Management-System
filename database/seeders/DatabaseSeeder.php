@@ -252,17 +252,6 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Product::factory()->create([
             'supplier_id' => 4,
-            'bar_code' => '345678901234',
-            'name'=> 'Handwoven Souvenir Scarf',
-            'description' => 'Colorful scarf showcasing local craftsmanship.',
-            'unit' => 'piece',
-            'quantity' => 100,
-            'unit_price' => 12.99,
-            'delivered_date' => '2023-08-21'
-        ]);
-
-        \App\Models\Product::factory()->create([
-            'supplier_id' => 5,
             'bar_code' => '456789012345',
             'name'=> 'Coconut Chocolate Bites',
             'description' => 'Chocolate-covered coconut bites',
@@ -273,7 +262,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory()->create([
-            'supplier_id' => 6,
+            'supplier_id' => 5,
             'bar_code' => '678901234567',
             'name'=> 'Pineapple Jam Jar',
             'description' => 'Locally made pineapple jam in a charming jar.',
@@ -284,7 +273,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory()->create([
-            'supplier_id' => 1,
+            'supplier_id' => 6,
             'bar_code' => '789012345678',
             'name'=> 'Batik Print Handkerchief',
             'description' => 'Handkerchief featuring traditional batik prints.',
@@ -295,7 +284,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory()->create([
-            'supplier_id' => 2,
+            'supplier_id' => 1,
             'bar_code' => '890123456789',
             'name'=> 'Turmeric Infused Honey',
             'description' => 'Honey infused with local turmeric.',
@@ -307,7 +296,7 @@ class DatabaseSeeder extends Seeder
 
         
         \App\Models\Product::factory()->create([
-            'supplier_id' => 3,
+            'supplier_id' => 2,
             'bar_code' => '012345678901',
             'name'=> 'Caramelized Pili Nuts',
             'description' => 'Pili nuts coated in sweet caramel.',
@@ -318,7 +307,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory()->create([
-            'supplier_id' => 4,
+            'supplier_id' => 3,
             'bar_code' => '123450987654',
             'name'=> 'Tribal Artisan Necklace',
             'description' => 'Handmade necklace featuring tribal designs.',
@@ -329,7 +318,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory()->create([
-            'supplier_id' => 5,
+            'supplier_id' => 4,
             'bar_code' => ' 234509876543',
             'name'=> 'Tamarind Candy Pack',
             'description' => 'Tangy tamarind candies in a vibrant pack.',
@@ -340,7 +329,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory()->create([
-            'supplier_id' => 6,
+            'supplier_id' => 5,
             'bar_code' => '567890123450',
             'name'=> 'Ube Jam Jar',
             'description' => 'Sweet and purple yam jam in a jar.',

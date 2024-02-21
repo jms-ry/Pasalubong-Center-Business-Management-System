@@ -66,7 +66,15 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Updated product whose id is ' . $product->id . '',
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+        
+        return redirect()->route('products.index')->with('success', 'Product was updated successfully');
     }
 
     /**
@@ -74,6 +82,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        DB::table('logs')->insert([
+            'user_id' => Auth::id(),
+            'action' => 'Deleted product, ' . $product->name . ' ' ,
+            'logged_date' => now()->toDateString(),
+            'logged_time' => now()->toTimeString(),
+        ]);
+    return redirect()->route('products.index')->with('success', 'Product was deleted successfully');
     }
 }

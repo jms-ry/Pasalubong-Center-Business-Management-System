@@ -4,7 +4,7 @@
 @push('style')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endpush
-<div class="container mt-4">
+<div class="container mt-4" data-controller="product">
     <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
         <div>
             <i class="bi bi-cart3" style="font-size: 3.5rem"></i>
@@ -61,13 +61,15 @@
                             <td>₱{{ number_format($product->unit_price, 2) }}</td>
                             <td>{{ \Carbon\Carbon::parse($product->delivered_date)->format('M d, Y') }}</td>
                             <td>
-                                <button class="btn btn-info btn-sm">View Details</button>
-                                <button class="btn btn-warning btn-sm">Edit Details</button>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-action="click->product#viewProductModal" data-product="{{json_encode($product)}}" data-product-id="{{$product->id}}">View Details</button>
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal" data-action="click->product#editProductModal" data-product="{{json_encode($product)}}" data-product-id="{{$product->id}}">Edit Details</button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            @include('modals.product.view_product_modal')
+            @include('modals.product.edit_product_modal')
             <div class="container d-flex justify-content-end align-items-end fw-bold">
                 {{$products->links()}}
             </div>
