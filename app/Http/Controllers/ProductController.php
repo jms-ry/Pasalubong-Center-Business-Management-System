@@ -16,10 +16,7 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        if (Gate::denies('admin-access-only', Auth::user())) {
-            return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
-        }
+    { 
         $products = Product::with('supplier')->paginate(5);
         $suppliers = Supplier::all();
         return view('product', compact('products', 'suppliers'));
@@ -38,6 +35,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
+        }
         $product = Product::create($request->all());
 
         DB::table('logs')->insert([
@@ -70,6 +70,9 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
+        }
         $product->update($request->all());
         DB::table('logs')->insert([
             'user_id' => Auth::id(),
@@ -86,6 +89,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
+        }
         $product->delete();
 
         DB::table('logs')->insert([

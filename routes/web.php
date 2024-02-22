@@ -29,8 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('customers', App\Http\Controllers\CustomerController::class);
     Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
     Route::resource('products', App\Http\Controllers\ProductController::class);
+    Route::resource('accounts', App\Http\Controllers\UserController::class);
     Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
-    Route::get('/accounts', [App\Http\Controllers\UserController::class, 'index'])->name('accounts');
     Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
     Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
     Route::get('/point-of-sale', [App\Http\Controllers\PosController::class, 'index'])->name('point-of-sale');

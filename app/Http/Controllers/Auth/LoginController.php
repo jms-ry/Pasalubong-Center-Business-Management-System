@@ -7,7 +7,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -60,10 +59,10 @@ class LoginController extends Controller
             'logged_date' => now()->toDateString(),
             'logged_time' => now()->toDateTimeString(),
         ]);
-        Session::flash('success', 'Welcome, ' . $user->name . '! You have successfully logged in.');
+        Session::flash('success', 'Welcome to Pasalubong Center and Business Management System, ' . $user->name . '.');
         return redirect()->intended($this->redirectTo);
     }
-
+    
     public function logout(Request $request)
     {
         //Update the signed out time in the dtr table
@@ -86,7 +85,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        Session::flash('status', 'You have successfully logged out.');
+        Session::flash('success', 'You have successfully logged out.');
 
         return $this->loggedOut($request) ?: redirect('/');
         

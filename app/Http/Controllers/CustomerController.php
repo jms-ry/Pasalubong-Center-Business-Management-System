@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class CustomerController extends Controller
 {
@@ -80,6 +81,9 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
+        }
         $customer = Customer::with('address')->find($customer->id);
         $customer->update($request->only(['first_name', 'last_name', 'email_address']));
        // Update address details
@@ -105,6 +109,9 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+        if (Gate::denies('admin-access-only', Auth::user())) {
+            return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
+        }
         // Check if the customer has an associated address
         if ($customer->address) {
             // Delete the associated address

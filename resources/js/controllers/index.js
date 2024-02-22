@@ -19,3 +19,6 @@ application.register('product', ProductController)
 
 import SupplierController from './supplier_controller'
 application.register('supplier', SupplierController)
+
+import UserController from './user_controller'
+application.register('user', UserController)

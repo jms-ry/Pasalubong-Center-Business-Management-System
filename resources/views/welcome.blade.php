@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body style="min-height: 100vh; background: url({{ asset('/img/banner.jpg') }}) no-repeat; background-size: cover; background-position: center;">
+<body style="min-height: 100vh; background: url({{ asset('/img/banner.jpg') }}) no-repeat; background-size: cover; background-position: center; overflow: hidden;">
 <script>
  var images = [
   "{{ asset('/img/banner.jpg') }}",
