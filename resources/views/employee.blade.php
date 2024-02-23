@@ -104,7 +104,7 @@
             {{$employees->links()}}
           </div>
           <div class="col-auto">
-          <button class="btn btn-outline-success fw-bold text-light {{ request()->is('employees') && empty(request()->except('sort')) ? 'd-none' : '' }}" type="button" onclick="window.location.href='/employees'">
+          <button class="btn btn-outline-success fw-bold text-light {{ request()->is('employees') && empty(request()->except('sort','page')) ? 'd-none' : '' }}" type="button" onclick="window.location.href='/employees'">
               Back to Employees
             </button>
           </div>

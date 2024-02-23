@@ -52,7 +52,8 @@ class EmployeeController extends Controller
       $query->orderBy('employees.id', 'asc');
     }
 
-    $employees = $query->paginate(5);
+    $employees = $query->paginate(5)->withQueryString();
+    
 
     return view('employee', compact('employees'));
   }

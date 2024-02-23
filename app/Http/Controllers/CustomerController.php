@@ -9,15 +9,28 @@ use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::with('address')->paginate(5);
+        $query = Customer::search($request->filled('search') ? $request->search : '');
+
+        if ($request->filled('sort')) {
+            $sortColumn = $request->input('sort');
+            $sortDirection = $request->input('direction', 'asc'); 
+      
+            $query->orderBy($sortColumn, $sortDirection);
+          }else{
+            $query->orderBy('id', 'asc');
+          }
+          
+        $customers = $query->paginate(5)->withQueryString();
+        $customers->load('address');
         return view ('customer',compact('customers'));
     }
 
@@ -57,7 +70,7 @@ class CustomerController extends Controller
             'logged_date' => now()->toDateString(),
             'logged_time' => now()->toTimeString(),
         ]);
-        return redirect()->route('customers.index')->with('success', 'Customer was created successfully');
+        return redirect()->back()->with('success', 'Customer was created successfully');
     }
 
     /**
@@ -101,7 +114,7 @@ class CustomerController extends Controller
             'logged_time' => now()->toTimeString(),
         ]);
 
-        return redirect()->route('customers.index')->with('success','Customer was updated successfully');
+        return redirect()->back()->with('success','Customer was updated successfully');
     }
 
     /**
@@ -129,7 +142,6 @@ class CustomerController extends Controller
             'logged_time' => now()->toTimeString(),
         ]);
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer was deleted successfully.');
+        return redirect()->back()->with('success', 'Customer was deleted successfully.');
     }
 }

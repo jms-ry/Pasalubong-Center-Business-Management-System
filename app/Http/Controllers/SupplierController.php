@@ -9,18 +9,31 @@ use App\Http\Requests\UpdateSupplierRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Http\Request;
 class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Gate::denies('admin-access-only', Auth::user())) {
             return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
         }
-        $suppliers = Supplier::with('address')->paginate(5);
+        
+        $query = Supplier::search($request->filled('search') ? $request->search : '');
+
+        if ($request->filled('sort')) {
+            $sortColumn = $request->input('sort');
+            $sortDirection = $request->input('direction', 'asc'); 
+      
+            $query->orderBy($sortColumn, $sortDirection);
+          }else{
+            $query->orderBy('id', 'asc');
+          }
+
+        $suppliers = $query->paginate(5)->withQueryString();
+        $suppliers->load('address');
         return view('supplier', compact('suppliers'));
     }
 
