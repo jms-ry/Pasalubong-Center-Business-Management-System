@@ -88,7 +88,7 @@
             <tr>
               <td colspan="5">
                 <div class="text-center text-dark fw-bold m-5">
-                  No records found for "{{ request()->get('search') }}"
+                  <p class="font-weight-bold">No records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
                 </div>
               </td>
             </tr>

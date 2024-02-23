@@ -9,16 +9,31 @@ use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     { 
-        $products = Product::with('supplier')->paginate(5);
+        
         $suppliers = Supplier::all();
+
+        $query = Product::search($request->filled('search') ? $request->search : '');
+
+        if ($request->filled('sort')) {
+            $sortColumn = $request->input('sort');
+            $sortDirection = $request->input('direction', 'asc'); 
+      
+            $query->orderBy($sortColumn, $sortDirection);
+          }else{
+            $query->orderBy('id', 'asc');
+          }
+
+        $products = $query->paginate(5)->withQueryString();
+        $products->load('supplier');
+        
         return view('product', compact('products', 'suppliers'));
     }
 
@@ -46,7 +61,7 @@ class ProductController extends Controller
             'logged_date' => now()->toDateString(),
             'logged_time' => now()->toTimeString(),
         ]);
-        return redirect()->route('products.index')->with('success', 'Product was created successfully');
+        return redirect()->back()->with('success', 'Product was created successfully');
     }
 
     /**
@@ -81,7 +96,7 @@ class ProductController extends Controller
             'logged_time' => now()->toTimeString(),
         ]);
         
-        return redirect()->route('products.index')->with('success', 'Product was updated successfully');
+        return redirect()->back()->with('success', 'Product was updated successfully');
     }
 
     /**
@@ -100,6 +115,6 @@ class ProductController extends Controller
             'logged_date' => now()->toDateString(),
             'logged_time' => now()->toTimeString(),
         ]);
-    return redirect()->route('products.index')->with('success', 'Product was deleted successfully');
+    return redirect()->back()->with('success', 'Product was deleted successfully');
     }
 }
