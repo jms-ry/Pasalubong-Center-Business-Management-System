@@ -103,7 +103,7 @@
             {{$users->links()}}
           </div>
           <div class="col-auto">
-            <button class="btn btn-outline-success fw-bold text-light {{ request()->is('accounts') && empty(request()->query()) ? 'd-none' : '' }}" type="button" onclick="window.location.href='/accounts'">
+            <button class="btn btn-outline-success fw-bold text-light {{ request()->is('accounts') && empty(request()->except('sort')) ? 'd-none' : '' }}" type="button" onclick="window.location.href='/accounts'">
               Back to Accounts
             </button>
           </div>
