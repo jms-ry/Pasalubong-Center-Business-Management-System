@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class PosController extends Controller
 {
@@ -11,7 +12,8 @@ class PosController extends Controller
      */
     public function index()
     {
-        return view('pos');
+        $customers = Customer::all();
+        return view('pos',compact('customers'));
     }
 
     /**

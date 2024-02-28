@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'PCBMS') }}</title>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -91,8 +91,8 @@
         @yield('content')
       </main>
       @auth
-        <footer class="bg-light text-dark text-center">
-          <p>&copy; 2024 VSU Pasalubong Center Business Management System.</p>
+        <footer class="bg-light text-dark text-center fixed-bottom d-flex justify-content-center align-items-center fw-bold">
+          <p><i class="bi bi-c-circle"></i> 2024 VSU Pasalubong Center Business Management System.</p>
         </footer>
       @endauth
     </div>
