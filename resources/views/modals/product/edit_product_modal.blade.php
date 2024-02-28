@@ -1,4 +1,4 @@
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
       <div class="modal-header">
@@ -74,8 +74,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Update Product</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-action="click->product#enableFields">Update Product</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->product#enableFields">Close</button>
         </div>
       </form>
     </div>

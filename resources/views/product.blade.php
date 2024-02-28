@@ -19,7 +19,7 @@
           <div class="col-md-6">
             <form method="GET">
               <div class="input-group">
-                <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2">
+                <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2" data-product-target="searchField">
                 <button class="btn btn-info btn-sm" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
               </div>
             </form>
@@ -32,7 +32,7 @@
                     <input type="hidden" name="search" value="{{ request()->get('search') }}">
                   @endif
                   <div class="input-group">
-                    <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()">
+                    <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()" data-product-target="sortField">
                       <option value="" selected>Sort by</option>
                       <option value="name" {{ request()->get('sort') === 'name' ? 'selected' : '' }}>Product Name</option>
                       <option value="quantity" {{ request()->get('sort') === 'quantity' ? 'selected' : '' }}>Quantity</option>
@@ -43,7 +43,7 @@
                 </form>
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</button>
+                <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal" data-action="click->product#disableFields">Add New Product</button>
               </div>
               @include('modals.product.add_product_modal')
             </div>

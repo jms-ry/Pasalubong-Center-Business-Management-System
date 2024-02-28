@@ -1,4 +1,4 @@
-<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true" >
+<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
       <div class="modal-header">
@@ -65,8 +65,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Update Customer</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-action="click->customer#enableFields">Update Customer</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->customer#enableFields">Cancel</button>
         </div>
       </form>
     </div>

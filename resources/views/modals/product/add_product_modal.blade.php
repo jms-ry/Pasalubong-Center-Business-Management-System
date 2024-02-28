@@ -1,9 +1,8 @@
-<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
       <div class="modal-header">
         <h4>Add/Create New Product</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{ route('products.store') }}" method="POST" id="addProductForm">
         @csrf
@@ -73,8 +72,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Create Product</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-action="click->product#enableFields">Create Product</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->product#enableFields">Cancel</button>
         </div>
       </form>
     </div>

@@ -1,9 +1,8 @@
-<div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+<div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h4>Edit Employee's Information</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="{{route('employees.update',['employee' =>'__EMPLOYEE_ID__'])}}" method="POST" id="editEmployeeForm">
           @csrf
@@ -67,8 +66,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Update Employee</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-action="click->employee#enableFields">Update Employee</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->employee#enableFields">Cancel</button>
           </div>
         </form>
       </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4" data-controller="employee">
   <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
     <div>
       <i class="bi bi-people-fill" style="font-size: 3.5rem"></i>
@@ -16,7 +16,7 @@
         <div class="col-md-6">
           <form method="GET">
             <div class="input-group">
-              <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2">
+              <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2" data-employee-target="searchField">
               <button class="btn btn-info btn-sm" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
             </div>
           </form>
@@ -29,8 +29,8 @@
                   <input type="hidden" name="search" value="{{ request()->get('search') }}">
                 @endif
                 <div class="input-group">
-                  <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()">
-                    <option value="" selected>Sort by</option>
+                  <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()" data-employee-target="sortField">
+                    <option value="" disabled selected hidden>Sort by</option>
                     <option value="name" {{ request()->get('sort') === 'name' ? 'selected' : '' }}>Name</option>
                     <option value="role" {{ request()->get('sort') === 'role' ? 'selected' : '' }}>Job Title</option>
                     <option value="email" {{ request()->get('sort') === 'email' ? 'selected' : '' }}>Email</option>
@@ -39,7 +39,7 @@
               </form>
             </div>
             <div class="col-auto">
-              <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">Add New Employee</button>
+              <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addEmployeeModal" data-action="click->employee#disableFields">Add New Employee</button>
             </div>
             <!--Modal-->
             @include('modals.employee.add_employee_modal')
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="card-body bg-dark" data-controller="employee">
+    <div class="card-body bg-dark" >
       @if($employees->count() > 0)
         <table class="table table-bordered fw-bold table-hover shadow text-center">
           <thead>

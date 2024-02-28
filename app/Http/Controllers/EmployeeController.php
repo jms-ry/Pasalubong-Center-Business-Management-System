@@ -23,7 +23,7 @@ class EmployeeController extends Controller
       return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
     }
 
-    $query = Employee::query()->with('user');
+    $query = Employee::query()->with('user.address');
 
     if ($request->filled('search')) {
       // Search in the user's name, role, and email

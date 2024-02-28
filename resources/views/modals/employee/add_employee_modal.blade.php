@@ -1,9 +1,8 @@
-<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h4>Create/Add New Employee</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="{{route('employees.store')}}" method="POST" id="addEmployeeForm">
           @csrf
@@ -66,8 +65,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Create Employee</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-action="click->employee#enableFields">Create Employee</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->employee#enableFields">Cancel</button>
           </div>
         </form>
       </div>

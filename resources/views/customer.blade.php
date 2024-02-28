@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4" data-controller="customer">
   <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
     <div>
       <i class="bi bi-person-fill" style="font-size: 3.5rem"></i>
@@ -16,7 +16,7 @@
         <div class="col-md-6">
           <form method="GET">
             <div class="input-group">
-              <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2">
+              <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2" data-customer-target= "searchField">
               <button class="btn btn-info btn-sm" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
             </div>
           </form>
@@ -29,8 +29,8 @@
                   <input type="hidden" name="search" value="{{ request()->get('search') }}">
                 @endif
                <div class="input-group">
-                  <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()">
-                    <option value="" selected>Sort by</option>
+                  <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()" data-customer-target="sortField">
+                    <option value="" disabled selected hidden>Sort by</option>
                     <option value="first_name" {{ request()->get('sort') === 'first_name' ? 'selected' : '' }}>First Name</option>
                     <option value="last_name" {{ request()->get('sort') === 'last_name' ? 'selected' : '' }}>Last Name</option>
                     <option value="email_address" {{ request()->get('sort') === 'email_address' ? 'selected' : '' }}>Email</option>
@@ -39,7 +39,7 @@
               </form>
             </div>
             <div class="col-auto">
-              <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addCustomerModal">Add New Customer</button>
+              <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addCustomerModal" data-action="click->customer#disableFields">Add New Customer</button>
             </div>
             <!--Add customer Modal-->
             @include('modals.customer.add_customer_modal')
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="card-body bg-dark" data-controller="customer">
+    <div class="card-body bg-dark" >
       @if($customers->count() > 0)
         <table class="table table-bordered fw-bold table-hover shadow text-center">
           <thead>
