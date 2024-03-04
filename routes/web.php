@@ -25,15 +25,15 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-    Route::resource('employees', App\Http\Controllers\EmployeeController::class);
-    Route::resource('customers', App\Http\Controllers\CustomerController::class);
-    Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
-    Route::resource('products', App\Http\Controllers\ProductController::class);
-    Route::resource('accounts', App\Http\Controllers\UserController::class);
+    Route::resource('employees', App\Http\Controllers\EmployeeController::class)->except(['show', 'create','edit']);
+    Route::resource('customers', App\Http\Controllers\CustomerController::class)->except(['show', 'create','edit']);
+    Route::resource('suppliers', App\Http\Controllers\SupplierController::class)->except(['show', 'create','edit']);
+    Route::resource('products', App\Http\Controllers\ProductController::class)->except(['show', 'create','edit']);
+    Route::resource('accounts', App\Http\Controllers\UserController::class)->except(['show', 'create','edit']);
     Route::get('/logs', [App\Http\Controllers\LogController::class, 'index'])->name('logs');
     Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
     Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
-    Route::resource('orders', App\Http\Controllers\OrderController::class);
-    Route::get('/point-of-sale', [App\Http\Controllers\PosController::class, 'index'])->name('point-of-sale');
+    Route::resource('orders', App\Http\Controllers\OrderController::class)->only(['store']);
+    Route::get('/point-of-sale', [App\Livewire\Orders::class, 'render'])->name('point-of-sale');
 });
 

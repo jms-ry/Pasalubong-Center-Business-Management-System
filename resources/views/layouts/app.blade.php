@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     
     @stack('style')
+    
   <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
-  <body>
+  <body class="overflow-hidden">
     <div id="app">
       <div class="alert-container mt-2" style="position:relative">
         @include('flash-messages')
@@ -59,7 +60,11 @@
             <i class="bi bi-menu-button-wide-fill"></i>
           </button>
           <a class="navbar-brand text-primary fw-bold fs-4 mx-auto ">
-            VSU Pasalubong Center Business Management System
+            @if(request()->is('point-of-sale'))
+              VSU PCBMS Point of Sales
+            @else
+              VSU Pasalubong Center Business Management System
+            @endif
           </a>
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav me-4">
@@ -97,5 +102,6 @@
       @endauth
     </div>
     @stack('scripts')
+    
   </body>
 </html>

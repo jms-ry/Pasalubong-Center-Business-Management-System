@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="employee"
 export default class extends Controller {
     
-  static targets = ['Name','Role','email','streetOne','streetTwo','municipality','city','zipCode','employeeId','employeeName', 'employeeRole', 'employeeEmail', 'employeeStreetOne', 'employeeStreetTwo', 'employeeMunicipality', 'employeeCity', 'employeeZipCode','searchField','sortField']
+  static targets = ['Name','Role','email','streetOne','streetTwo','municipality','city','zipCode','employeeId','employeeName', 'employeeRole', 'employeeEmail', 'employeeStreetOne', 'employeeStreetTwo', 'employeeMunicipality', 'employeeCity', 'employeeZipCode','searchField','sortField'];
   connect() {
   }
 
