@@ -19,7 +19,9 @@ Route::get('/', function () {
         Session::flash('warning', 'Access denied. You are already logged in.');
         return back();
     }
-    return view('welcome');
+    else{
+        return view('welcome');
+    }
 })->name('welcome');
 
 Auth::routes();
@@ -35,5 +37,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
     Route::resource('orders', App\Http\Controllers\OrderController::class)->only(['store']);
     Route::get('/point-of-sale', [App\Livewire\Orders::class, 'render'])->name('point-of-sale');
+    Route::post('/point-of-sale', [App\Livewire\Orders::class, 'save'])->name('point-of-sale');
 });
 

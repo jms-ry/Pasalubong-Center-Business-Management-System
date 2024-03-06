@@ -14,7 +14,8 @@ class Orders extends Component
     $customers = Customer::all();
     $products = Product::where('quantity', '>', 0)->get();
     $selectedCustomerId = $request->input('customer_id');
-    $orders =Order::where('customer_id', $selectedCustomerId)->get();
-    return view('pos',compact('customers','products','orders'));
+    $orders = Order::where('customer_id', $selectedCustomerId)->get();
+    return view('pos',compact('customers','products'));
   }
+
 }

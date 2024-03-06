@@ -45,6 +45,9 @@ export default class extends Controller {
     this.selectedCustomerTarget.textContent = "";
     this.customerSelectTarget.value = "";
     this.displayCustomerInfoTarget.textContent = "Customer's Order Information";
+    this.totalCostTarget.value = "";
+    this.quantityTarget.value = "";
+    this.productSelectTarget.value = "";
   }
 
   updateTotalCost() {

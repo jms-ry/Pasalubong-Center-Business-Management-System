@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     
     @stack('style')
-    
+    @livewireStyles
   <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
@@ -102,6 +102,6 @@
       @endauth
     </div>
     @stack('scripts')
-    
+    @livewireScripts
   </body>
 </html>
