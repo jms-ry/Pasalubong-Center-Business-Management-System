@@ -36,7 +36,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
     Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
     Route::resource('orders', App\Http\Controllers\OrderController::class)->only(['store']);
-    Route::get('/point-of-sale', [App\Livewire\Orders::class, 'render'])->name('point-of-sale');
-    Route::post('/point-of-sale', [App\Livewire\Orders::class, 'save'])->name('point-of-sale');
+    Route::get('/point-of-sale', [App\Http\Controllers\OrderController::class, 'index'])->name('point-of-sale');
 });
 

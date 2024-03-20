@@ -15,11 +15,10 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     
     @stack('style')
-    @livewireStyles
   <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
-  <body class="overflow-hidden">
+  <body class="overflow-hidden overflow-y-auto">
     <div id="app">
       <div class="alert-container mt-2" style="position:relative">
         @include('flash-messages')
@@ -96,12 +95,11 @@
         @yield('content')
       </main>
       @auth
-        <footer class="bg-light text-dark text-center fixed-bottom d-flex justify-content-center align-items-center fw-bold">
+        <footer class="bg-light text-dark text-center d-flex justify-content-center align-items-center fw-bold">
           <p><i class="bi bi-c-circle"></i> 2024 VSU Pasalubong Center Business Management System.</p>
         </footer>
       @endauth
     </div>
     @stack('scripts')
-    @livewireScripts
   </body>
 </html>

@@ -5,7 +5,7 @@
         <h4>Edit Product's Information</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="{{route('products.update',['product' =>'__PRODUCT_ID__'])}}" method="POST" id="editProductForm">
+      <form action="{{route('products.update',['product' =>'__PRODUCT_ID__'])}}" method="POST" id="editProductForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="modal-body">
@@ -27,6 +27,11 @@
           <div class="mb-3 fw-bold">
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control fw-bold text-dark" id="description" name="description" data-product-target="productDescription"></textarea>
+          </div>
+          <div class="mb-3 fw-bold">
+            <label for="image" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+            <small class="form-text text-muted">Accepted formats: JPEG, PNG. Max file size: 2MB.</small>
           </div>
           <div class="row g-2">
             <div class="col-4">

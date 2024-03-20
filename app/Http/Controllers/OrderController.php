@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-
+use App\Models\Customer;
+use App\Models\Product;
+use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $customers = Customer::all();
+        $products = Product::where('quantity', '>', 0)->get();
+        $selectedCustomerId = $request->input('customer_id');
+        $orders = Order::where('customer_id', $selectedCustomerId)->get();
+        return view('pos',compact('customers','products','orders'));
     }
 
     /**

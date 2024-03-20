@@ -20,7 +20,8 @@ export default class extends Controller {
     'productDeliveredDate',
     'productSupplierName',
     'searchField',
-    'sortField'
+    'sortField',
+    'image,'
 
   ];
   connect() {

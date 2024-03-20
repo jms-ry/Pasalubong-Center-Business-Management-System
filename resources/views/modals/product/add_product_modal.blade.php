@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h4>Add/Create New Product</h4>
       </div>
-      <form action="{{ route('products.store') }}" method="POST" id="addProductForm">
+      <form action="{{ route('products.store') }}" method="POST" id="addProductForm" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
           <h6 class="mt-2 fw-bold text-light">Product Information</h6>
@@ -25,6 +25,11 @@
           <div class="mb-3 fw-bold">
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control" id="description" name="description" required placeholder="Description"></textarea>
+          </div>
+          <div class="mb-3 fw-bold">
+            <label for="image" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+            <small class="form-text text-muted">Accepted formats: JPEG, PNG. Max file size: 2MB.</small>
           </div>
           <div class="row g-2">
             <div class="col-4">

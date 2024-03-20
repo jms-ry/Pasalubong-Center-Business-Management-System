@@ -18,7 +18,8 @@ class Product extends Model
         'unit',
         'quantity',
         'unit_price',
-        'delivered_date'
+        'delivered_date',
+        'image'
     ];
     public function toSearchableArray()
     {
