@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sales', [App\Http\Controllers\ReceiptController::class, 'index'])->name('sales');
     Route::get('/dtrs', [App\Http\Controllers\DtrController::class, 'index'])->name('dtrs');
     Route::resource('orders', App\Http\Controllers\OrderController::class)->only(['store']);
+    Route::resource('order-item', App\Http\Controllers\OrderItemController::class)->only(['store', 'destroy']);
+    Route::resource('receipts', App\Http\Controllers\ReceiptController::class)->only(['store']);
+    Route::resource('payments', App\Http\Controllers\PaymentController::class)->only(['store']);
     Route::get('/point-of-sale', [App\Http\Controllers\OrderController::class, 'index'])->name('point-of-sale');
 });
 

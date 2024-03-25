@@ -15,6 +15,7 @@ return new class extends Migration
             $table->dropForeign(['product_id']);
             $table->dropColumn('quantity');
             $table->dropColumn('total_cost');
+            $table->dropColumn('product_id');
             $table->unsignedBigInteger('user_id')->after('customer_id'); 
             $table->decimal('total', 10, 2)->after('customer_id');
 

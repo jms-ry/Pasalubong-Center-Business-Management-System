@@ -25,8 +25,8 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    public function receipt() :BelongsTo
+
+    public function user() :BelongsTo
     {
-        return $this->belongsTo(Receipt::class);
-    }
+        return $this->belongsTo(User::class);}
 }

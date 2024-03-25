@@ -47,9 +47,9 @@
           @foreach($receipts as $receipt)
             <tr>
               <td>{{ $receipt->id }}</td>
-              <td>{{ $receipt->customer->first_name }},{{ $receipt->customer->last_name }}</td>
-              <td>{{ $receipt->user->name }}</td>
-              <td>₱{{number_format($receipt->total,2) }}</td>
+              <td>{{ $receipt->payment->order->customer->first_name }},{{ $receipt->payment->order->customer->last_name }}</td>
+              <td>{{ $receipt->payment->order->user->name }}</td>
+              <td>₱{{number_format($receipt->payment->order->total,2) }}</td>
               <td>
                 <button class="btn btn-info btn-sm">View Receipt</button>
               </td>
@@ -59,7 +59,7 @@
               <td></td>
               <td></td>
               <td>TOTAL</td>
-              <td>₱{{ number_format($totalSales, 2) }}</td>
+              <td>₱ 00.00</td>
               <td></td>
               </tr>
           </tbody>

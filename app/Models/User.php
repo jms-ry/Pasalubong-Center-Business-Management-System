@@ -76,11 +76,10 @@ class User extends Authenticatable
         return $this->hasMany(Log::class);
     }
 
-    public function receipts(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(Receipt::class);
+        return $this->hasMany(Order::class);
     }
-
     public function employee(): HasOne
     {
         return $this->hasOne(Employee::class);

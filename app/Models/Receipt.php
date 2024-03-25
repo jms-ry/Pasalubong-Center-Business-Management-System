@@ -5,24 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Receipt extends Model
 {
     use HasFactory;
 
-    public function orders() : HasMany
+    public function payment() : BelongsTo
     {
-        return $this->hasMany(Order::class);
-    }
-
-    public function customer() :BelongsTo
-    {
-        return $this->belongsTo(Customer::class);
-    }
-
-    public function user() : BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Payment::class);
     }
 }
