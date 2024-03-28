@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+<div class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel" data-bs-backdrop="false">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title text-light fw-bold" id="sidebarLabel">Store Administration</h5>
     <button type="button" class="btn-close btn-close-white fw-bold" data-bs-dismiss="offcanvas" aria-label="Close"></button>

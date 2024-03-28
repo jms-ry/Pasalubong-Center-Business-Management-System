@@ -11,6 +11,9 @@ application.register('customer', CustomerController)
 import EmployeeController from './employee_controller'
 application.register('employee', EmployeeController)
 
+import FooterVisibilityController from './footer-visibility_controller'
+application.register('footer-visibility', FooterVisibilityController)
+
 import HelloController from './hello_controller'
 application.register('hello', HelloController)
 

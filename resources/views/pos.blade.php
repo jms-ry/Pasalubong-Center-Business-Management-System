@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <table class="table table-striped table-hover">
+                  <table class="table table-striped table-hover" id="order-items-table" data-pos-target="orderItemsTable">
                     <thead>
                       <tr>
                         <th>Product Name</th>
@@ -48,21 +48,11 @@
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach($orders as $order)
-                        <tr>
-                          <td>{{$order->product->name}}</td>
-                          <td>{{$order->quantity}}</td>
-                          <td>{{$order->total_cost}}</td>
-                          <td>
-                            <button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-x-circle text-dark"></i></button>
-                          </td>
-                        </tr>
-                      @endforeach
+                    <tbody id ="orderItemsTableBody">
                     </tbody>
                   </table>
                   <div class="text-end me-3">
-                    <p class="fw-bold fs-5" id="totalAmount">Total: <span>₱0.00</span></p>
+                    <p class="fw-bold fs-5 text-dark">Total: <span id="totalAmountValue">₱0.00</span></p>
                   </div>
                   <div class="text-center">
                     <button class="btn btn-primary disabled" id="proceedPaymentBtn">Proceed to Payment</button>
@@ -75,7 +65,7 @@
             <div class="card mb-2">
               <div class=" m-2 d-flex justify-content-between ms-2 me-2 fs-4 text-dark fw-bold">
                 <span>Grand Total:</span>
-                <span>₱0.00</span> 
+                <span id="grandTotalAmountValue">₱0.00</span> 
               </div>
             </div>
             <div class="card shadow mt-2">

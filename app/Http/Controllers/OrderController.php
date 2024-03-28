@@ -16,10 +16,9 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $customers = Customer::all();
-        $products = Product::where('quantity', '>', 0)->paginate(4);
-        $selectedCustomerId = $request->input('customer_id');
-        $orders = Order::where('customer_id', $selectedCustomerId)->get();
-        return view('pos',compact('customers','products','orders'));
+        $products = Product::where('quantity', '>', 0)->get();
+        
+        return view('pos',compact('customers','products'));
     }
 
     /**

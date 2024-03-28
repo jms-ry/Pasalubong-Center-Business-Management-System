@@ -13,12 +13,14 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+
     @stack('style')
   <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
-  <body class="overflow-hidden overflow-y-auto">
+  <body data-controller="footer-visibility">
     <div id="app">
       <div class="alert-container mt-2" style="position:relative">
         @include('flash-messages')
@@ -95,7 +97,7 @@
         @yield('content')
       </main>
       @auth
-        <footer class="bg-light text-dark text-center d-flex justify-content-center align-items-center fw-bold">
+        <footer class="bg-light text-dark text-center d-flex justify-content-center align-items-center fw-bold" >
           <p><i class="bi bi-c-circle"></i> 2024 VSU Pasalubong Center Business Management System.</p>
         </footer>
       @endauth
