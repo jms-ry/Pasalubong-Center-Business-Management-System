@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Receipt extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function payment() : BelongsTo
-    {
-        return $this->belongsTo(Payment::class);
-    }
+  protected $fillable = [
+    'payment_id',
+  ];
+  public function payment() : BelongsTo
+  {
+    return $this->belongsTo(Payment::class);
+  }
 }

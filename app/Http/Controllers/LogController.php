@@ -8,45 +8,39 @@ use App\Http\Requests\UpdateLogRequest;
 use Illuminate\Http\Request;
 class LogController extends Controller
 {
-  /**
-    * Display a listing of the resource.
-   */
   public function index(Request $request)
   {
-    $user = auth()->user();
     $query = Log::query();
 
     // Filter logs based on user role
-    if ($user->role != 'admin') {
+    if ($user = auth()->user() and $user->role !== 'admin') {
       $query->where('user_id', $user->id);
     }
 
     // Search functionality
-    if ($request->filled('search')) {
-      $query->where(function ($query) use ($request) {
-        $query->where('action', 'like', '%' . $request->search . '%')
-          ->orWhereHas('user', function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->search . '%');
-          });
-        });
-      }
+    if ($search = $request->input('search')) {
+      $query->where(function ($query) use ($search) {
+        $query->where('action', 'like', "%{$search}%")
+          ->orWhereHas('user', fn ($query) => $query->where('name', 'like', "%{$search}%"));
+      });
+    }
 
     // Sort functionality
-    if ($request->filled('sort')) {
-      $sortColumn = $request->input('sort');
-      $sortDirection = $request->input('direction', 'asc');
+    if ($sort = $request->input('sort')) {
+      $direction = $request->input('direction', 'asc');
 
-      if ($sortColumn === 'user_name') {
+      if ($sort === 'user_name') {
         $query->leftJoin('users', 'logs.user_id', '=', 'users.id')
-        ->orderBy('users.name', $sortDirection);
-      } elseif ($sortColumn === 'activity') {
-        $query->orderBy('action', $sortDirection);
+          ->orderBy('users.name', $direction);
+      } else {
+        $query->orderBy($sort, $direction);
       }
-    }else {
-      $query->orderBy('id', 'asc');
+    } else {
+      $query->latest();
     }
 
     $logs = $query->paginate(10)->withQueryString();
+
     return view('log', compact('logs'));
   }
 

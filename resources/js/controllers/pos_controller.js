@@ -34,18 +34,21 @@ export default class extends Controller {
     this.selectedCustomerTarget.classList.add('d-none');
   }
 
-  addProductToOrder(event) {
+  addProductAsOrderItem(event) {
     const productId = event.currentTarget.dataset.productId;
     const productName = event.currentTarget.dataset.productName;
     const productPrice = parseFloat(event.currentTarget.dataset.productPrice);
-
+    
     // Create table row with editable quantity input field
     const newRow = document.createElement('tr');
     newRow.setAttribute('id', `orderItemRow[${productId}]`);
     newRow.innerHTML = `
       <td>${productName}</td>
+      <input type="hidden" name="order_items[${productId}][product_id]" value="${productId}">
       <td><input type="number" class="form-control form-control-sm text-dark" style="width: 50%;" value="1" min="1" id="orderItemQuantity[${productId}]" data-product-id="${productId}" data-product-price="${productPrice}" data-action="input->pos#updateTotalPrice "></td>
+      <input type="hidden" name="order_items[${productId}][quantity]" value="" id="order_items[${productId}][quantity]">
       <td id ="orderItemTotalPrice[${productId}]">₱${productPrice.toFixed(2)}</td>
+      <input type="hidden" name="order_items[${productId}][total_price]" value="" id="order_items[${productId}][total_price]">
       <td>
       <button class="btn btn-danger btn-sm" id="removeOrderItemBtn[${productId}]" data-action="click->pos#removeOrderItem" data-product-id="${productId}">Remove</button>
       </td>
@@ -55,13 +58,20 @@ export default class extends Controller {
     const tableBody = document.getElementById('orderItemsTableBody');
     tableBody.appendChild(newRow);
 
-    
-    // Enable proceed to payment button
-    const proceedPaymentBtn = document.getElementById('proceedPaymentBtn');
-    proceedPaymentBtn.classList.remove('disabled');
+    const quantity = 1;
+    const totalPrice = quantity * productPrice;
+    const quantityField = document.getElementById(`order_items[${productId}][quantity]`);
+    quantityField.value = quantity;
 
+    const totalPriceField = document.getElementById(`order_items[${productId}][total_price]`);
+    totalPriceField.value = totalPrice.toFixed(2);
+
+    // Disable the product card
+    const productCard = document.getElementById(`product[${productId}]`);
+    productCard.classList.add('disabled');
+    this.hideDisplayReminder();
     this.updateTotalAmounts();
-
+    
   }
   updateTotalPrice(event) {
     const input = event.target;
@@ -71,6 +81,12 @@ export default class extends Controller {
     const totalPrice = quantity * productPrice;
     const totalPriceCell = document.getElementById(`orderItemTotalPrice[${productId}]`);
     totalPriceCell.textContent = `₱${totalPrice.toFixed(2)}`;
+
+    const quantityField = document.getElementById(`order_items[${productId}][quantity]`);
+    quantityField.value = quantity;
+
+    const totalPriceField = document.getElementById(`order_items[${productId}][total_price]`);
+    totalPriceField.value = totalPrice.toFixed(2);
 
     this.updateTotalAmounts();
   }
@@ -93,6 +109,9 @@ export default class extends Controller {
   
     const grandTotalAmountSpan = document.getElementById('grandTotalAmountValue');
     grandTotalAmountSpan.textContent = `₱${totalAmount.toFixed(2)}`;
+
+    const totalAmountField = document.getElementById('total');
+    totalAmountField.value = totalAmount.toFixed(2);
   }
   
   removeOrderItem(event){
@@ -102,7 +121,53 @@ export default class extends Controller {
     if(rowToRemove){
       rowToRemove.remove();
 
+      const table = document.getElementById('orderItemsTableBody');
+      const productReminder = document.getElementById('selectProductReminder');
+      const selectElement = document.getElementById('customer_id');
+      const reminderPlaceholder = document.getElementById('reminderPlaceholder');
+      const proceedPaymentBtn = document.getElementById('proceedPaymentBtn');
+      const customerReminder = document.getElementById('selectCustomerReminder');
+      const productCard = document.getElementById(`product[${productId}]`);
+      if(table.children.length == 0 && (selectElement.selectedIndex >= 0)){
+        reminderPlaceholder.classList.remove('d-none');
+        productReminder.classList.remove('d-none');
+        proceedPaymentBtn.classList.add('disabled');
+        customerReminder.classList.add('d-none');  
+      }
+      productCard.classList.remove('disabled');
       this.updateTotalAmounts();
+    }
+  }
+  hideDisplayReminder(){
+    const reminderPlaceholder = document.getElementById('reminderPlaceholder');
+    const proceedPaymentBtn = document.getElementById('proceedPaymentBtn');
+    const productReminder = document.getElementById('selectProductReminder');
+    const customerReminder = document.getElementById('selectCustomerReminder');
+    const table = document.getElementById('orderItemsTableBody');
+    const selectElement = document.getElementById('customer_id');
+
+    if((table.children.length >=1) && (selectElement.selectedIndex != 0)){
+      reminderPlaceholder.classList.add('d-none');
+      proceedPaymentBtn.classList.remove('disabled');
+    }else if(selectElement.selectedIndex != 0){
+      customerReminder.classList.add('d-none');
+    }else{
+      productReminder.classList.add('d-none');
+    }
+  }
+
+  checkoutOrder() {
+    const totalAmountField = document.getElementById('total');
+    const paymentInputField = document.getElementById('amountField');
+    const paymentField = document.getElementById('amount');
+    const checkoutOrderBtn = document.getElementById('checkOutOrderBtn');
+    
+    paymentField.value = paymentInputField.value;
+
+    if (parseFloat(paymentField.value) >= parseFloat(totalAmountField.value)) {
+      checkoutOrderBtn.classList.remove('disabled');
+    } else {
+      checkoutOrderBtn.classList.add('disabled');
     }
   }
 }

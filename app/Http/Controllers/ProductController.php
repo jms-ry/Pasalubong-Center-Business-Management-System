@@ -72,12 +72,12 @@ class ProductController extends Controller
 
     DB::table('logs')->insert([
       'user_id' =>Auth::id(),
-        'action' => 'Created new product, ' . $product->name,
-        'logged_date' => now()->toDateString(),
-        'logged_time' => now()->toTimeString(),
-      ]);
-      return redirect()->back()->with('success', 'Product was created successfully');
-    }
+      'action' => 'Created new product, ' . $product->name,
+      'logged_date' => now()->toDateString(),
+      'logged_time' => now()->toTimeString(),
+    ]);
+    return redirect()->back()->with('success', 'Product was created successfully');
+  }
 
   /**
     * Display the specified resource.

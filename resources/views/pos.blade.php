@@ -23,8 +23,8 @@
               <p class="fw-bold text-dark" style="display: flex; align-items: center;">
                 <label class="text-muted" style="margin-right: 10px;">Customer:</label>
                 <span class="ms-3 hidden" data-pos-target="selectedCustomer"></span>
-                <select name="customer_id" id="customer_id" class="form-control form-control-sm text-dark" style="width: 50%;" required data-pos-target="customerSelect" >
-                  <option class="text-dark"value="">Select a customer</option>
+                <select name="customer_id" id="customer_id" class="form-control form-control-sm text-dark" style="width: 50%;" required data-pos-target="customerSelect" data-action="change->pos#hideDisplayReminder">
+                  <option class="text-dark"value="" disabled selected hidden>Select a customer</option>
                   @foreach ($customers as $customer)
                     <option class="text-dark" value="{{ $customer->id }}">{{ $customer->first_name }} {{ $customer->last_name }}</option>
                   @endforeach
@@ -53,10 +53,18 @@
                   </table>
                   <div class="text-end me-3">
                     <p class="fw-bold fs-5 text-dark">Total: <span id="totalAmountValue">₱0.00</span></p>
+                    <input type="hidden" class="form-control" name="total" id="total" value="0">
                   </div>
                   <div class="text-center">
-                    <button class="btn btn-primary disabled" id="proceedPaymentBtn">Proceed to Payment</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#paymentModal"class="btn btn-primary disabled mt-2 mb-2"id="proceedPaymentBtn">Proceed to Payment</button>
+                    <div class="text-danger d-block" id="reminderPlaceholder">
+                      <p class="fw-bold">Button is disabled. Please do the following:
+                        <span id="selectCustomerReminder" class="d-block ml-4" >- Select a Customer.</span>
+                        <span id="selectProductReminder" class="d-block ml-4">- Click a product to be placed as Order. Quantity can be edited.</span>
+                      </p>
+                    </div>
                   </div>
+                  @include('modals.payment.place_payment_modal')
                 </div>
               </form>
             </div>
