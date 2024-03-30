@@ -51,7 +51,7 @@
         <table class="table table-bordered fw-bold table-hover shadow text-center">
           <thead>
             <tr>
-              <th>#</th>
+              <th>ID</th>
               <th>Name</th>
               <th>Job Title</th>
               <th>Email</th>

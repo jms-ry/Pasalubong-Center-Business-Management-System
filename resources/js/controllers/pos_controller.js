@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="pos"
 export default class extends Controller {
-  static targets = ["currentTime","displayCustomerInfo","customerSelect","selectedCustomer","orderItemsTable"];
+  static targets = ["currentTime","displayCustomerInfo","customerSelect","selectedCustomer","orderItemsTable","totalDisplay"];
   connect() {
     this.updateTime(); 
     const customerSelect = this.element.querySelector('#customer_id');
@@ -112,6 +112,8 @@ export default class extends Controller {
 
     const totalAmountField = document.getElementById('total');
     totalAmountField.value = totalAmount.toFixed(2);
+
+    this.totalDisplayTarget.textContent = `₱${totalAmount.toFixed(2)}`;
   }
   
   removeOrderItem(event){
@@ -161,13 +163,14 @@ export default class extends Controller {
     const paymentInputField = document.getElementById('amountField');
     const paymentField = document.getElementById('amount');
     const checkoutOrderBtn = document.getElementById('checkOutOrderBtn');
-    
+    const paymentReminder = document.getElementById('paymentReminderPlaceholder')
     paymentField.value = paymentInputField.value;
 
     if (parseFloat(paymentField.value) >= parseFloat(totalAmountField.value)) {
-      checkoutOrderBtn.classList.remove('disabled');
+      checkoutOrderBtn.classList.remove('d-none');
+      paymentReminder.classList.add('d-none');
     } else {
-      checkoutOrderBtn.classList.add('disabled');
+      checkoutOrderBtn.classList.add('d-none');
     }
   }
 }

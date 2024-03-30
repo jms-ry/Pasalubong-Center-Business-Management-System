@@ -55,7 +55,7 @@
           <table class="table table-bordered fw-bold table-hover shadow text-center">
             <thead>
               <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>

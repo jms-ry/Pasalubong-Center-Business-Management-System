@@ -23,6 +23,9 @@ application.register('pos', PosController)
 import ProductController from './product_controller'
 application.register('product', ProductController)
 
+import ProductSalesController from './product_sales_controller'
+application.register('product-sales', ProductSalesController)
+
 import SupplierController from './supplier_controller'
 application.register('supplier', SupplierController)
 

@@ -52,7 +52,7 @@
         <table class="table table-bordered fw-bold table-hover shadow text-center">
           <thead>
             <tr>
-              <th>#</th>
+              <th>ID</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>

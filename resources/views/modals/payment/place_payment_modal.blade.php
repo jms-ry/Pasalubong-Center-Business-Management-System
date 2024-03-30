@@ -11,8 +11,11 @@
           <input type="number" class="form-control border border-dark" id="amountField" name="amountField"  data-action="input->pos#checkoutOrder" required>
           <input type="hidden" name="amount" id="amount" value>
         </div>
-        <div class="text-end">
-          <button type="submit" class="btn btn-primary disabled" id="checkOutOrderBtn">Checkout Order</button>
+        <div class="text-end d-none" id="checkOutOrderBtn">
+          <button type="submit" class="btn btn-primary" >Checkout Order</button>
+        </div>
+        <div class="text-danger text-center d-block mt-2" id="paymentReminderPlaceholder">
+          <span class="d-block ml-4">Please enter payment amount greater than <span data-pos-target="totalDisplay"></span>.</span>
         </div>
       </div>
     </div>

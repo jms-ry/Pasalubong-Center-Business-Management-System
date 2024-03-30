@@ -50,7 +50,7 @@
             <table class="table table-bordered fw-bold table-hover shadow text-center">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>ID</th>
                   <th>Company Name</th>
                   <th>Company Abbreviation</th>
                   <th>Email</th>
