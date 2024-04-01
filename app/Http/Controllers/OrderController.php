@@ -66,18 +66,18 @@ class OrderController extends Controller
     ]);
     $orderItem->save();
 
-    $payment = new Payment([
-      'amount' => $request->amount,
-      'order_id' => $order->id,
-      'user_id' => auth()->id(),
-    ]);
-    $payment->save();
     // Update product quantity
     $product = Product::findOrFail($productId);
     $product->quantity -= $item['quantity']; // Subtract the ordered quantity
     $product->save();
   }
 
+  $payment = new Payment([
+    'amount' => $request->amount,
+    'order_id' => $order->id,
+    'user_id' => auth()->id(),
+  ]);
+  $payment->save();
   //Create Receipt
   $receipt = new Receipt([
     'payment_id' => $payment->id,

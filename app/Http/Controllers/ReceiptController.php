@@ -58,7 +58,7 @@ class ReceiptController extends Controller
         ->orderBy('orders.total', 'asc');
       }
     }
-    $receipts = $query->paginate(5);
+    $receipts = $query->with('payment.order.order_items.product')->paginate(5);
     return view('sales', compact('receipts'));
   }
 

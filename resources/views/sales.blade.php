@@ -63,7 +63,7 @@
                   <td id="receiptCashierName[{{ $receipt->id }}]">{{ $receipt->payment->order->user->name }}</td>
                   <td id="receiptTotal[{{ $receipt->id }}]">₱{{number_format($receipt->payment->order->total,2) }}</td>
                   <td>
-                    <button class="btn btn-info btn-sm">View Receipt</button>
+                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewReceiptModal" data-action="click->product-sales#viewReceiptModal" data-receipt="{{json_encode($receipt)}}">View Receipt</button>
                   </td>
                 </tr>
               @endforeach
@@ -98,6 +98,7 @@
             </tbody>
           </table>
         @endif
+        @include('modals.sales.view_receipt_modal')
         <div class="container d-flex justify-content-end align-items-end fw-bold">
           <div class="row g-1">
             <div class="col-auto">
