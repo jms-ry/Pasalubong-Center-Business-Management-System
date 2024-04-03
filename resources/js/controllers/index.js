@@ -11,8 +11,14 @@ application.register('customer', CustomerController)
 import EmployeeController from './employee_controller'
 application.register('employee', EmployeeController)
 
+import FlashMessageController from './flash_message_controller'
+application.register('flash-message', FlashMessageController)
+
 import FooterVisibilityController from './footer-visibility_controller'
 application.register('footer-visibility', FooterVisibilityController)
+
+import FormValidationController from './form_validation_controller'
+application.register('form-validation', FormValidationController)
 
 import HelloController from './hello_controller'
 application.register('hello', HelloController)

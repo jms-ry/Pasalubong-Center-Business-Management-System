@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
   /**
@@ -18,7 +19,7 @@ class ProductController extends Controller
   */
   public function index(Request $request)
   { 
-        
+    Session::flash('index_success', 'You are currently viewing the products page!');    
     $suppliers = Supplier::all();
 
     $query = Product::search($request->filled('search') ? $request->search : '');
@@ -76,7 +77,7 @@ class ProductController extends Controller
       'logged_date' => now()->toDateString(),
       'logged_time' => now()->toTimeString(),
     ]);
-    return redirect()->back()->with('success', 'Product was created successfully');
+    return redirect()->back()->with('create_success', 'Product '.$product->name.' was created successfully');
   }
 
   /**

@@ -8,7 +8,7 @@ use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
   /**
@@ -16,6 +16,7 @@ class UserController extends Controller
   */
   public function index(Request $request)
   {
+    Session::flash('index_success', 'You are currently viewing the accounts page!');
     if (Gate::denies('admin-access-only', Auth::user())) {
       return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
     }
@@ -75,7 +76,7 @@ class UserController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->back()->with('success', 'Account for ' . $user->name . ' was created successfully');
+    return redirect()->back()->with('create_success', 'Account for ' . $user->name . ' was created successfully');
   }
 
   /**

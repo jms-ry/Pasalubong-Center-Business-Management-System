@@ -1,4 +1,4 @@
-<div class="modal fade" id="addCustomerModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+<div class="modal fade" id="addCustomerModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="addCustomerModalLabel" aria-hidden="true" data-controller="form-validation">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
       <div class="modal-header">
@@ -12,7 +12,8 @@
             <div class="col-6">
               <div class="mb-3 fw-bold">
                 <label for="first_name" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="Enter First Name">
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name" data-action="input->pos#removeReminder">
+                <div><span class="d-block invalid-tooltip"></span></div>
               </div>
             </div>
             <div class="col-6 fw-bold">
@@ -63,9 +64,12 @@
             </div>
           </div>
         </div>
+        <div id="createCustomerReminder">
+          <p class="text-danger fw-bold ms-2">Creating new customer will remove all the selected/placed product/s to order.</p>
+        </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" data-action="click->customer#enableFields">Create Customer</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->customer#enableFields">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-action="click->customer#enableFields click->pos#enableField">Cancel</button>
         </div>
       </form>
     </div>

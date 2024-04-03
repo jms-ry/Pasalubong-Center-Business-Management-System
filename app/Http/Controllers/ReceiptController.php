@@ -6,14 +6,15 @@ use App\Models\Receipt;
 use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class ReceiptController extends Controller
 {
   /**
     * Display a listing of the resource.
   */
   public function index(Request $request)
-  {   
+  { 
+    Session::flash('index_success', 'You are currently viewing the product sales page!');  
     $query = Receipt::query();
     if($request->has('search')){
       $search = $request->get('search');

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class EmployeeController extends Controller
 {
   /**
@@ -19,6 +19,7 @@ class EmployeeController extends Controller
   */
   public function index(Request $request)
   {
+    Session::flash('index_success', 'You are currently viewing the employees page!');
     if (Gate::denies('admin-access-only', Auth::user())) {
       return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
     }
@@ -98,7 +99,7 @@ class EmployeeController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-      return redirect()->back()->with('success', 'Employee was created successfully');
+      return redirect()->back()->with('create_success', 'Employee '.$employee->user->name.' was created successfully');
   }
 
   /**

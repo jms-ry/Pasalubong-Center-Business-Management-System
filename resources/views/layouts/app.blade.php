@@ -22,7 +22,7 @@
   </head>
   <body data-controller="footer-visibility">
     <div id="app">
-      <div class="alert-container mt-2" style="position:relative">
+      <div class="alert-container mt-2" data-controller="flash-message">
         @include('flash-messages')
       </div>
       <style>
@@ -39,22 +39,7 @@
           width: 100%;
           z-index: 1000; 
         }
-      </style>   
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(function() {
-            var alert = document.querySelector('.alert');
-              if(alert) {
-                alert.style.opacity = '0';
-                alert.style.transition = 'opacity 0.5s ease-in-out';
-
-                setTimeout(function() {
-                  alert.remove();
-                }, 500); 
-              }
-          }, 2000); 
-        });
-      </script>
+      </style>
       @auth
         <nav class="navbar navbar-light bg-white shadow-sm ">
           <button class="navbar-toggler ms-4  text-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">

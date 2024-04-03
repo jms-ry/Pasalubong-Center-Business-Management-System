@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\Receipt;
+use Illuminate\Support\Facades\Session;
 class OrderController extends Controller
 {
   /**
@@ -20,6 +21,8 @@ class OrderController extends Controller
   */
   public function index(Request $request)
   {
+    $userName = auth()->user()->name;
+    Session::flash('index_success', 'Welcome, ' . $userName . ', to VSU PCBMS Point of Sale!');
     $customers = Customer::all();
     $products = Product::where('quantity', '>', 0)->get();
         
@@ -35,64 +38,64 @@ class OrderController extends Controller
   }
 
   public function store(StoreOrderRequest $request)
-{
-  // Iterate through the order items to validate quantity
-  foreach ($request->order_items as $productId => $item) {
-    $product = Product::findOrFail($productId);
-    $requestedQuantity = $item['quantity'];
+  {
+    // Iterate through the order items to validate quantity
+    foreach ($request->order_items as $productId => $item) {
+      $product = Product::findOrFail($productId);
+      $requestedQuantity = $item['quantity'];
 
-    if ($requestedQuantity > $product->quantity) {
-      return redirect()->back()->with('error', 'Requested quantity for ' . $product->name . ' exceeds available quantity');
+      if ($requestedQuantity > $product->quantity) {
+        return redirect()->back()->with('error', 'Requested quantity for ' . $product->name . ' exceeds available quantity');
+      }
     }
-  }
 
-  // If all quantities are valid, proceed to create the order
-  // Create the order
-  $order = new Order([
-    'customer_id' => $request->customer_id,
-    'user_id' => auth()->id(),
-    'total' => $request->total,
-  ]);
-  $order->save();
-
-  // Iterate through the order items to create them
-  foreach ($request->order_items as $productId => $item) {
-    // Create the order item
-    $orderItem = new OrderItem([
-      'product_id' => $productId,
-      'quantity' => $item['quantity'],
-      'total_price' => $item['total_price'],
-      'order_id' => $order->id,
+    // If all quantities are valid, proceed to create the order
+    // Create the order
+    $order = new Order([
+      'customer_id' => $request->customer_id,
+      'user_id' => auth()->id(),
+      'total' => $request->total,
     ]);
-    $orderItem->save();
+    $order->save();
 
-    // Update product quantity
-    $product = Product::findOrFail($productId);
-    $product->quantity -= $item['quantity']; // Subtract the ordered quantity
-    $product->save();
+    // Iterate through the order items to create them
+    foreach ($request->order_items as $productId => $item) {
+      // Create the order item
+      $orderItem = new OrderItem([
+        'product_id' => $productId,
+        'quantity' => $item['quantity'],
+        'total_price' => $item['total_price'],
+        'order_id' => $order->id,
+      ]);
+      $orderItem->save();
+
+      // Update product quantity
+      $product = Product::findOrFail($productId);
+      $product->quantity -= $item['quantity']; // Subtract the ordered quantity
+      $product->save();
+    }
+
+    $payment = new Payment([
+      'amount' => $request->amount,
+      'order_id' => $order->id,
+      'user_id' => auth()->id(),
+    ]);
+    $payment->save();
+    //Create Receipt
+    $receipt = new Receipt([
+      'payment_id' => $payment->id,
+    ]);
+    $receipt->save();
+    // Log the action
+    DB::table('logs')->insert([
+      'user_id' => Auth::id(),
+      'action' => 'Created new order for ' . $order->customer->first_name . ' ' . $order->customer->last_name,
+      'logged_date' => now()->toDateString(),
+      'logged_time' => now()->toTimeString(),
+    ]);
+
+    return redirect()->back()->with('create_success', 'Order for '.$order->customer->first_name.' '.'was created successfully!');
   }
-
-  $payment = new Payment([
-    'amount' => $request->amount,
-    'order_id' => $order->id,
-    'user_id' => auth()->id(),
-  ]);
-  $payment->save();
-  //Create Receipt
-  $receipt = new Receipt([
-    'payment_id' => $payment->id,
-  ]);
-  $receipt->save();
-  // Log the action
-  DB::table('logs')->insert([
-    'user_id' => Auth::id(),
-    'action' => 'Created new order for ' . $order->customer->first_name . ' ' . $order->customer->last_name,
-    'logged_date' => now()->toDateString(),
-    'logged_time' => now()->toTimeString(),
-  ]);
-
-  return redirect()->back()->with('success', 'Order created successfully!');
-}
 
 
   /**

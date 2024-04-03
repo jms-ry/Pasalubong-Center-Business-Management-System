@@ -6,6 +6,7 @@ use App\Models\dtr;
 use App\Http\Requests\StoredtrRequest;
 use App\Http\Requests\UpdatedtrRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 class DtrController extends Controller
 {
   /**
@@ -13,6 +14,7 @@ class DtrController extends Controller
   */
   public function index(Request $request)
   {
+    Session::flash('index_success', 'You are currently viewing the dtrs page!');
     $user = auth()->user();
     $query = Dtr::whereNotNull('signed_out_time');
     

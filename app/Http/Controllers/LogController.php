@@ -6,10 +6,12 @@ use App\Models\Log;
 use App\Http\Requests\StoreLogRequest;
 use App\Http\Requests\UpdateLogRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 class LogController extends Controller
 {
   public function index(Request $request)
   {
+    Session::flash('index_success', 'You are currently viewing the logs page!');
     $query = Log::query();
 
     // Filter logs based on user role

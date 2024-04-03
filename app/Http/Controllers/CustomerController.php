@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class CustomerController extends Controller
 {
     /**
@@ -18,6 +18,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
+        Session::flash('index_success', 'You are currently viewing the customers page!');
         $query = Customer::search($request->filled('search') ? $request->search : '');
 
         if ($request->filled('sort')) {
@@ -70,7 +71,7 @@ class CustomerController extends Controller
             'logged_date' => now()->toDateString(),
             'logged_time' => now()->toTimeString(),
         ]);
-        return redirect()->back()->with('success', 'Customer was created successfully');
+        return redirect()->back()->with('create_success', 'Customer '.$customer->first_name.' was created successfully');
     }
 
     /**

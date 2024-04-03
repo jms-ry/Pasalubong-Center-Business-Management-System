@@ -29,6 +29,7 @@
                     <option class="text-dark" value="{{ $customer->id }}">{{ $customer->first_name }} {{ $customer->last_name }}</option>
                   @endforeach
                 </select>
+                <button type="button" id="addCustomerButton" class="btn btn-sm btn-info fw-bold ms-2" data-bs-toggle="modal" data-bs-target="#addCustomerModal" data-action="click->pos#disableField">Add New Customer</button>
               </p>
               <div class="card shadow mt-2">
                 <div class="card-header shadow bg-primary">
@@ -67,6 +68,7 @@
                   @include('modals.payment.place_payment_modal')
                 </div>
               </form>
+              @include('modals.customer.add_customer_modal')
             </div>
           </div>
           <div class="col-7 text-dark fw-bold">

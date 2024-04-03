@@ -6,7 +6,11 @@ export default class extends Controller {
   connect() {
     this.updateTime(); 
     const customerSelect = this.element.querySelector('#customer_id');
-    customerSelect.addEventListener('change', () => this.updateCustomerName());
+    customerSelect.addEventListener('change', () => {
+      this.updateCustomerName();
+      this.hideAddCustomerButton();
+    });
+    
   }
 
   updateTime() {
@@ -172,5 +176,20 @@ export default class extends Controller {
     } else {
       checkoutOrderBtn.classList.add('d-none');
     }
+  }
+  disableField(){
+    this.customerSelectTarget.disabled = true;
+  }
+  
+  removeReminder(){
+    const createCustomerReminder = this.element.querySelector('#createCustomerReminder');
+    createCustomerReminder.classList.add('d-none');
+  }
+  hideAddCustomerButton(){
+    const addCustomerButton = this.element.querySelector('#addCustomerButton');
+    addCustomerButton.classList.add('d-none');
+  }
+  enableField(){
+    this.customerSelectTarget.disabled = false;
   }
 }
