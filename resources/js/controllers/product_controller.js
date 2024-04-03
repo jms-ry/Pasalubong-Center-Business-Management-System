@@ -21,7 +21,6 @@ export default class extends Controller {
     'productSupplierName',
     'searchField',
     'sortField',
-    'image,'
 
   ];
   connect() {
@@ -51,7 +50,7 @@ export default class extends Controller {
       this.barCodeTarget.textContent = product.bar_code || '';
       this.nameTarget.textContent = product.name || '';
       this.descriptionTarget.textContent = product.description || '';
-            
+    
       if (product.unit) {
         this.unitTarget.textContent = this.capitalizeFirstLetter(product.unit);
       } else {

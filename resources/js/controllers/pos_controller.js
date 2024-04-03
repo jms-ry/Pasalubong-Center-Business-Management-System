@@ -173,6 +173,7 @@ export default class extends Controller {
     if (parseFloat(paymentField.value) >= parseFloat(totalAmountField.value)) {
       checkoutOrderBtn.classList.remove('d-none');
       paymentReminder.classList.add('d-none');
+      paymentInputField.classList.add('is-valid')
     } else {
       checkoutOrderBtn.classList.add('d-none');
     }
