@@ -192,9 +192,13 @@ export default class extends Controller {
     const paymentField = document.getElementById('amount');
     const checkoutOrderBtn = document.getElementById('checkOutOrderBtn');
     const paymentReminder = document.getElementById('paymentReminderPlaceholder')
-    paymentField.value = paymentInputField.value;
+    const changeField = this.element.querySelector('#change');
 
-    if (parseFloat(paymentField.value) >= parseFloat(grandTotalAmountField.value)) {
+    paymentField.value = paymentInputField.value;
+    const payment = parseFloat(paymentField.value);
+    const grandTotal = parseFloat(grandTotalAmountField.value);
+    if (payment >= grandTotal) {
+      changeField.value = payment - grandTotal;
       checkoutOrderBtn.classList.remove('d-none');
       paymentReminder.classList.add('d-none');
       paymentInputField.classList.remove('is-invalid')

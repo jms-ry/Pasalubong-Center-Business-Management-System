@@ -62,7 +62,9 @@
         <form action="{{ route('products.destroy', ['product' => '__PRODUCT_ID__']) }}" method="post" id="deleteProductForm">
           @csrf
           @method('DELETE')
-          <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete</button>
+          @can('admin-access-only')
+            <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete</button>
+          @endcan
         </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>

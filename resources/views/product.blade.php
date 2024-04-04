@@ -42,9 +42,11 @@
                   </div>
                 </form>
               </div>
-              <div class="col-auto">
-                <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal" data-action="click->product#disableFields">Add New Product</button>
-              </div>
+              @can('admin-access-only')
+                <div class="col-auto">
+                  <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal" data-action="click->product#disableFields">Add New Product</button>
+                </div>
+              @endcan
               @include('modals.product.add_product_modal')
             </div>
           </div>
@@ -73,7 +75,9 @@
                   <td>{{ \Carbon\Carbon::parse($product->delivered_date)->format('M d, Y') }}</td>
                   <td>
                     <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-action="click->product#viewProductModal" data-product="{{json_encode($product)}}" data-product-id="{{$product->id}}">View Details</button>
-                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal" data-action="click->product#editProductModal" data-product="{{json_encode($product)}}" data-product-id="{{$product->id}}">Edit Details</button>
+                    @can('admin-access-only')
+                      <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal" data-action="click->product#editProductModal" data-product="{{json_encode($product)}}" data-product-id="{{$product->id}}">Edit Details</button>
+                    @endcan
                   </td>
                 </tr>
               @endforeach

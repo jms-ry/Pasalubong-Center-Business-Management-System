@@ -23,7 +23,7 @@ class LogController extends Controller
     if ($search = $request->input('search')) {
       $query->where(function ($query) use ($search) {
         $query->where('action', 'like', "%{$search}%")
-          ->orWhereHas('user', fn ($query) => $query->where('name', 'like', "%{$search}%"));
+        ->orWhereHas('user', fn ($query) => $query->where('name', 'like', "%{$search}%"));
       });
     }
 
@@ -32,12 +32,12 @@ class LogController extends Controller
       $direction = $request->input('direction', 'asc');
 
       if ($sort === 'user_name') {
-          $query->leftJoin('users', 'logs.user_id', '=', 'users.id')
-              ->orderBy('users.name', $direction);
+        $query->leftJoin('users', 'logs.user_id', '=', 'users.id')
+        ->orderBy('users.name', $direction);
       } elseif ($sort === 'activity') {
-          $query->orderBy('action', $direction);
+        $query->orderBy('action', $direction);
       } else {
-          $query->orderBy($sort, $direction);
+        $query->orderBy($sort, $direction);
       }
     } else {
       $query->latest();

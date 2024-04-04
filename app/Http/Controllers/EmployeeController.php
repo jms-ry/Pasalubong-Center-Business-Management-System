@@ -30,8 +30,8 @@ class EmployeeController extends Controller
       // Search in the user's name, role, and email
       $query->whereHas('user', function ($query) use ($request) {
         $query->where('name', 'like', '%'.$request->search.'%')
-          ->orWhere('role', 'like', '%'.$request->search.'%')
-          ->orWhere('email', 'like', '%'.$request->search.'%');
+        ->orWhere('role', 'like', '%'.$request->search.'%')
+        ->orWhere('email', 'like', '%'.$request->search.'%');
       });
     }
 
@@ -42,7 +42,7 @@ class EmployeeController extends Controller
       // Handle sorting based on user attributes
       if ($sortColumn === 'name' || $sortColumn === 'role' || $sortColumn === 'email') {
         $query->join('users', 'employees.user_id', '=', 'users.id')
-          ->orderBy('users.'.$sortColumn, $sortDirection);
+        ->orderBy('users.'.$sortColumn, $sortDirection);
       } else {
         // Sort by employee id by default
         $query->orderBy('employees.id', $sortDirection);

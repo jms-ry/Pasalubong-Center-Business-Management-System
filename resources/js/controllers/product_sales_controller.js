@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="product-sales"
 export default class extends Controller {
   
-  static targets = ["customerName","orderNumberId","orderDate","orderTime","userName","total"];
+  static targets = ["customerName","orderNumberId","orderDate","orderTime","userName","total","amountPaid","change","grandTotal","discount"];
   connect() {
     this.updateTotal();
   }
@@ -31,6 +31,10 @@ export default class extends Controller {
       const formattedDate = createdAt.toLocaleDateString('en-US', options);
       const formattedTime = createdAt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
+      if(receipt.payment){
+        this.amountPaidTarget.textContent = '₱' + receipt.payment.amount;
+        this.changeTarget.textContent = '₱' + receipt.payment.change;
+      }
       if(receipt.payment.order.customer.first_name){
        const customerName = receipt.payment.order.customer.first_name;
        const possessiveCustomerName = customerName + "'s";
@@ -39,6 +43,12 @@ export default class extends Controller {
       if(receipt.payment.order){
         this.orderNumberIdTarget.textContent = receipt.payment.order.id;
         this.totalTarget.textContent = '₱' + receipt.payment.order.total;
+        this.grandTotalTarget.textContent = '₱' + receipt.payment.order.grand_total;
+        if(receipt.payment.order.discount){
+          this.discountTarget.textContent = parseInt(receipt.payment.order.discount) + '%';
+        }else{
+          this.discountTarget.textContent = 'N/A';
+        }
       }
       if(receipt.payment.order.created_at){
         this.orderDateTarget.textContent = formattedDate;
@@ -58,6 +68,7 @@ export default class extends Controller {
           newRow.innerHTML = `
             <td class="fw-bold text-dark">${orderItem.product.name}</td>
             <td class="fw-bold text-dark text-center">${orderItem.quantity}</td>
+            <td class="fw-bold text-dark text-center">${orderItem.product.unit_price}</td>
             <td class="fw-bold text-dark text-center">${orderItem.total_price}</td>
           `;
           viewOrderItemsTable.appendChild(newRow);

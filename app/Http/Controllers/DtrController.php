@@ -25,7 +25,7 @@ class DtrController extends Controller
     // Search functionality
     if ($request->filled('search')) {
       $query->whereHas('user', function ($query) use ($request) {
-          $query->where('name', 'like', '%' . $request->search . '%');
+        $query->where('name', 'like', '%' . $request->search . '%');
       });
     }
     // Sort functionality
@@ -35,7 +35,7 @@ class DtrController extends Controller
 
       // Handle sorting based on selected column
       if ($sortColumn === 'logged_date' || $sortColumn === 'signed_in_time' || $sortColumn === 'signed_out_time') {
-          $query->orderBy($sortColumn, $sortDirection);
+        $query->orderBy($sortColumn, $sortDirection);
       } elseif ($sortColumn === 'name') {
         $query->leftJoin('users', 'dtrs.user_id', '=', 'users.id')
         ->orderBy('users.name', $sortDirection);

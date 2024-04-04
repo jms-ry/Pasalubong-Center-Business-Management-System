@@ -80,6 +80,7 @@ class OrderController extends Controller
     $payment = new Payment([
       'amount' => $request->amount,
       'order_id' => $order->id,
+      'change' => $request->change,
       'user_id' => auth()->id(),
     ]);
     $payment->save();

@@ -52,10 +52,6 @@ class ProductController extends Controller
   */
   public function store(StoreProductRequest $request)
   {
-    if (Gate::denies('admin-access-only', Auth::user())) {
-      return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
-    }
-        
     if ($request->hasFile('image')) {
       // Store the uploaded image in the storage directory
       $imagePath = $request->file('image')->store('product_images', 'public');
@@ -101,9 +97,6 @@ class ProductController extends Controller
   */
   public function update(UpdateProductRequest $request, Product $product)
   {
-    if (Gate::denies('admin-access-only', Auth::user())) {
-      return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
-    }
     // Handle image upload
     if ($request->hasFile('image')) {
       // Store the new uploaded image in the storage directory
@@ -135,9 +128,6 @@ class ProductController extends Controller
   */
   public function destroy(Product $product)
   {
-    if (Gate::denies('admin-access-only', Auth::user())) {
-      return redirect()->back()->with('error', 'Unauthorized action! Only users with an admin role are allowed for this action.');
-    }
     $product->delete();
 
     DB::table('logs')->insert([

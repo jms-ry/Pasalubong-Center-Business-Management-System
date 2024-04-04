@@ -40,9 +40,9 @@ class HomeController extends Controller
     
     $recentProducts = Product::whereNull('restock_date')
       ->orWhere(function ($query) {
-          $query->whereNotNull('restock_date')
-          ->orderBy('restock_date', 'desc');
-        })
+        $query->whereNotNull('restock_date')
+        ->orderBy('restock_date', 'desc');
+      })
       ->orderBy('delivered_date', 'desc')
       ->first();
 

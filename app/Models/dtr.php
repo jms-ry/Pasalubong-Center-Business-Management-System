@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
 class dtr extends Model
 {
-    use HasFactory,Searchable;
+  use HasFactory,Searchable;
 
-    public function user() : BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+  public function user() : BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
 }

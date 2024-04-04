@@ -10,6 +10,7 @@
           <label for="amount"class="form-label">Payment Amount:</label>
           <input type="number" class="form-control border border-dark" id="amountField" name="amountField"  data-action="input->pos#checkoutOrder" required>
           <input type="hidden" name="amount" id="amount" value>
+          <input type="hidden" name="change" id="change" value>
         </div>
         <div class="text-end d-none" id="checkOutOrderBtn">
           <button type="submit" class="btn btn-primary" >Checkout Order</button>
