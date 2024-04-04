@@ -32,10 +32,12 @@ class LogController extends Controller
       $direction = $request->input('direction', 'asc');
 
       if ($sort === 'user_name') {
-        $query->leftJoin('users', 'logs.user_id', '=', 'users.id')
-          ->orderBy('users.name', $direction);
+          $query->leftJoin('users', 'logs.user_id', '=', 'users.id')
+              ->orderBy('users.name', $direction);
+      } elseif ($sort === 'activity') {
+          $query->orderBy('action', $direction);
       } else {
-        $query->orderBy($sort, $direction);
+          $query->orderBy($sort, $direction);
       }
     } else {
       $query->latest();

@@ -34,7 +34,7 @@
                   @endif
                   <div class="input-group">
                     <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()">
-                      <option selected>Sort by</option>
+                      <option disabled selected hidden>Sort by</option>
                       <option value="name" {{ request()->get('sort') === 'name' ? 'selected' : '' }}>User Name</option>
                       <option value="logged_date" {{ request()->get('sort') === 'logged_date' ? 'selected' : '' }}>Logged Date</option>
                       <option value="signed_in_time" {{ request()->get('sort') === 'signed_in_time' ? 'selected' : '' }}>Signed In</option>

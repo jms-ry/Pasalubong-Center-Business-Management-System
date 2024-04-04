@@ -116,7 +116,7 @@ class UserController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
     
-    return redirect()->back()->with('success', 'Account user was updated successfully');
+    return redirect()->back()->with('success', 'Account user of id ' . $user->id . ' was updated successfully');
     
   }
 

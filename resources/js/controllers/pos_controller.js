@@ -11,6 +11,7 @@ export default class extends Controller {
       this.hideAddCustomerButton();
     });
     
+   
   }
 
   updateTime() {
@@ -112,12 +113,29 @@ export default class extends Controller {
     totalAmountSpan.textContent = `₱${totalAmount.toFixed(2)}`;
   
     const grandTotalAmountSpan = document.getElementById('grandTotalAmountValue');
-    grandTotalAmountSpan.textContent = `₱${totalAmount.toFixed(2)}`;
 
     const totalAmountField = document.getElementById('total');
     totalAmountField.value = totalAmount.toFixed(2);
 
-    this.totalDisplayTarget.textContent = `₱${totalAmount.toFixed(2)}`;
+    const discountInputField = document.getElementById('discountField');
+    const discountField = document.getElementById('discount');
+    discountField.value = discountInputField.value;
+
+    const grandTotalAmountField = document.getElementById('grand_total');
+    const discount = discountField.value;
+    const total = totalAmountField.value;
+    
+    if(discount > 0){
+      let discountValue = 0;
+      discountValue = total * (discount/100);   
+      grandTotalAmountField.value = total - discountValue;
+      grandTotalAmountSpan.textContent = `₱${grandTotalAmountField.value}`;
+    }else{
+      grandTotalAmountField.value = total;
+      grandTotalAmountSpan.textContent = `₱${grandTotalAmountField.value}`;
+    }
+    this.totalDisplayTarget.textContent = `₱${grandTotalAmountField.value}`;
+
   }
   
   removeOrderItem(event){
@@ -151,10 +169,16 @@ export default class extends Controller {
     const customerReminder = document.getElementById('selectCustomerReminder');
     const table = document.getElementById('orderItemsTableBody');
     const selectElement = document.getElementById('customer_id');
+    const discountTotalDiv = this.element.querySelector('#discountTotalDiv');
+    const discountInput = this.element.querySelector('#discountField');
 
-    if((table.children.length >=1) && (selectElement.selectedIndex != 0)){
+    if((table.children.length >=1) && (selectElement.selectedIndex > 0)){
       reminderPlaceholder.classList.add('d-none');
       proceedPaymentBtn.classList.remove('disabled');
+      discountInput.classList.remove('d-none');
+      discountTotalDiv.classList.remove('text-end');
+      discountTotalDiv.classList.add('d-flex');
+      discountTotalDiv.classList.add('justify-content-between');
     }else if(selectElement.selectedIndex != 0){
       customerReminder.classList.add('d-none');
     }else{
@@ -163,19 +187,23 @@ export default class extends Controller {
   }
 
   checkoutOrder() {
-    const totalAmountField = document.getElementById('total');
+    const grandTotalAmountField = document.getElementById('grand_total');
     const paymentInputField = document.getElementById('amountField');
     const paymentField = document.getElementById('amount');
     const checkoutOrderBtn = document.getElementById('checkOutOrderBtn');
     const paymentReminder = document.getElementById('paymentReminderPlaceholder')
     paymentField.value = paymentInputField.value;
 
-    if (parseFloat(paymentField.value) >= parseFloat(totalAmountField.value)) {
+    if (parseFloat(paymentField.value) >= parseFloat(grandTotalAmountField.value)) {
       checkoutOrderBtn.classList.remove('d-none');
       paymentReminder.classList.add('d-none');
+      paymentInputField.classList.remove('is-invalid')
       paymentInputField.classList.add('is-valid')
     } else {
+      paymentReminder.classList.remove('d-none');
       checkoutOrderBtn.classList.add('d-none');
+      paymentInputField.classList.remove('is-valid')
+      paymentInputField.classList.add('is-invalid')
     }
   }
   disableField(){
@@ -192,5 +220,30 @@ export default class extends Controller {
   }
   enableField(){
     this.customerSelectTarget.disabled = false;
+  }
+  
+  validateDiscountField(event) {
+    const discountField = event.target;
+    const discountValue = discountField.value.trim();
+    const proceedPaymentBtn = document.getElementById('proceedPaymentBtn');
+    if(discountValue === ''){
+      discountField.classList.remove('is-invalid','is-valid');
+      this.element.querySelector('#discountFeedback').textContent = "";
+      proceedPaymentBtn.classList.remove('disabled');
+      return;
+    }
+    const isValid = /^\d{1,2}$/.test(discountValue);
+
+    if(isValid){
+      discountField.classList.remove('is-invalid');
+      discountField.classList.add('is-valid');
+      proceedPaymentBtn.classList.remove('disabled');
+      this.element.querySelector('#discountFeedback').textContent = '';
+    }else{
+      discountField.classList.remove('is-valid');
+      discountField.classList.add('is-invalid');
+      proceedPaymentBtn.classList.add('disabled');
+      this.element.querySelector('#discountFeedback').textContent = 'Discount is invalid.';
+    }
   }
 }

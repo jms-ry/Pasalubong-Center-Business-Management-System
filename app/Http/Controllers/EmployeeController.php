@@ -140,7 +140,7 @@ class EmployeeController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->back()->with('success', 'Employee was updated successfully');
+    return redirect()->back()->with('success', 'Employee with id of ' . $employee->id . ' was updated successfully');
 
   }
 

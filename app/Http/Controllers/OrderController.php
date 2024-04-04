@@ -55,6 +55,8 @@ class OrderController extends Controller
       'customer_id' => $request->customer_id,
       'user_id' => auth()->id(),
       'total' => $request->total,
+      'discount' => $request->discount,
+      'grand_total' => $request->grand_total,
     ]);
     $order->save();
 

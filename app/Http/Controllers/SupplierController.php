@@ -114,7 +114,7 @@ class SupplierController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->route('suppliers.index')->with('success','Supplier was updated successfully');
+    return redirect()->route('suppliers.index')->with('success','Supplier with id '.$supplier->id.' was updated successfully');
   }
 
   /**

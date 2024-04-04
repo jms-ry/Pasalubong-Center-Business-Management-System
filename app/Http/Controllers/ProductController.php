@@ -127,7 +127,7 @@ class ProductController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
         
-    return redirect()->back()->with('success', 'Product was updated successfully');
+    return redirect()->back()->with('success', 'Product with id of ' . $product->id . ' was updated successfully');
   }
 
   /**
