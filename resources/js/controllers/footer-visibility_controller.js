@@ -3,7 +3,9 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="footer-visibility"
 export default class extends Controller {
   connect() {
-    this.checkFooterVisibility();
+    setTimeout(() => {
+      this.checkFooterVisibility();
+    }, 100);
   }
 
   checkFooterVisibility() {
@@ -14,12 +16,17 @@ export default class extends Controller {
     const isFooterVisible = footerRect.bottom <= window.innerHeight;
     
     if(isFooterVisible){
+      document.body.classList.remove('overflow-x-hidden');
       document.body.classList.add('overflow-hidden');
+      return;
+    }else if(window.location.pathname === "/dashboard"){
+      document.body.classList.remove('overflow-x-hidden');
+      document.body.classList.add('overflow-hidden');
+      return;
     }else{
-      if(window.location.pathname === "/dashboard"){
-        document.body.classList.add('overflow-hidden');
-      }
-      document.body.classList.add('overflow-x-hidden'); 
+      document.body.classList.remove('overflow-hidden');
+      document.body.classList.add('overflow-x-hidden');
+      return; 
     }
   }
 }

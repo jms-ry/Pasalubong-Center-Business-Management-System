@@ -20,7 +20,7 @@
   <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
-  <body data-controller="footer-visibility">
+  <body data-controller="footer-visibility" >
     <div id="app">
       <div class="alert-container mt-2" data-controller="flash-message">
         @include('flash-messages')

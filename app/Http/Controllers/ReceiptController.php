@@ -7,6 +7,8 @@ use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 class ReceiptController extends Controller
 {
   /**
@@ -14,6 +16,9 @@ class ReceiptController extends Controller
   */
   public function index(Request $request)
   { 
+    if (Gate::denies('admin-access-only', Auth::user())) {
+      return redirect()->back()->with('error', 'You do not have authorization. Access denied!');
+    }
     Session::flash('index_success', 'You are currently viewing the product sales page!');  
     $query = Receipt::query();
     if($request->has('search')){
