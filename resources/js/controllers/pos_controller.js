@@ -42,6 +42,7 @@ export default class extends Controller {
   addProductAsOrderItem(event) {
     const productId = event.currentTarget.dataset.productId;
     const productName = event.currentTarget.dataset.productName;
+    const productQuantity = event.currentTarget.dataset.productQuantity;
     const productPrice = parseFloat(event.currentTarget.dataset.productPrice);
     
     // Create table row with editable quantity input field
@@ -50,7 +51,7 @@ export default class extends Controller {
     newRow.innerHTML = `
       <td>${productName}</td>
       <input type="hidden" name="order_items[${productId}][product_id]" value="${productId}">
-      <td><input type="number" class="form-control form-control-sm text-dark" style="width: 50%;" value="1" min="1" id="orderItemQuantity[${productId}]" data-product-id="${productId}" data-product-price="${productPrice}" data-action="input->pos#updateTotalPrice "></td>
+      <td><input type="number" class="form-control form-control-sm text-dark is-valid" style="width: 50%;" value="1" min="1" id="orderItemQuantity[${productId}]" data-product-id="${productId}" data-product-price="${productPrice}" data-product-quantity="${productQuantity}" data-action="input->pos#updateTotalPrice input->pos#validateQuantityField"></td>
       <input type="hidden" name="order_items[${productId}][quantity]" value="" id="order_items[${productId}][quantity]">
       <td id ="orderItemTotalPrice[${productId}]">₱${productPrice.toFixed(2)}</td>
       <input type="hidden" name="order_items[${productId}][total_price]" value="" id="order_items[${productId}][total_price]">
@@ -174,12 +175,14 @@ export default class extends Controller {
 
     if((table.children.length >=1) && (selectElement.selectedIndex > 0)){
       reminderPlaceholder.classList.add('d-none');
+      productReminder.classList.add('d-none');
+      customerReminder.classList.add('d-none');
       proceedPaymentBtn.classList.remove('disabled');
       discountInput.classList.remove('d-none');
       discountTotalDiv.classList.remove('text-end');
       discountTotalDiv.classList.add('d-flex');
       discountTotalDiv.classList.add('justify-content-between');
-    }else if(selectElement.selectedIndex != 0){
+    }else if(selectElement.selectedIndex > 0){
       customerReminder.classList.add('d-none');
     }else{
       productReminder.classList.add('d-none');
@@ -250,4 +253,36 @@ export default class extends Controller {
       this.element.querySelector('#discountFeedback').textContent = 'Discount is invalid.';
     }
   }
+
+  validateQuantityField(event) {
+    const input = event.target;
+    const productId = input.dataset.productId;
+    const productQuantity = parseInt(input.dataset.productQuantity, 10); 
+    const inputValue = parseInt(input.value, 10);
+    const quantityReminder = this.element.querySelector('#selectProductQuantityReminder');
+    const proceedPaymentBtn = document.getElementById('proceedPaymentBtn');
+    const reminderPlaceholder = document.getElementById('reminderPlaceholder');
+    if(isNaN(inputValue)){
+      input.classList.remove('is-invalid','is-valid');
+      proceedPaymentBtn.classList.add('disabled');
+      quantityReminder.classList.remove('d-none');
+      quantityReminder.textContent = '- Quantity should be at least 1.'
+      reminderPlaceholder.classList.remove('d-none');
+      return;
+    }
+    if(inputValue > productQuantity){
+      input.classList.add('is-invalid');
+      proceedPaymentBtn.classList.add('disabled');
+      quantityReminder.classList.remove('d-none');
+      reminderPlaceholder.classList.remove('d-none');
+    }else{
+      input.classList.remove('is-invalid');
+      input.classList.add('is-valid');
+      quantityReminder.classList.add('d-none');
+      reminderPlaceholder.classList.add('d-none');
+      proceedPaymentBtn.classList.remove('disabled');
+    }
+  }
+
+
 }

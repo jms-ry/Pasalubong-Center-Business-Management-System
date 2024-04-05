@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="ms-5 me-5">
+  <div class="ms-5 me-5 mt-0 mb-0">
     <div class="row">
       <div class="col-md-4">
         <div class="card mb-4">
@@ -146,9 +146,6 @@
               <p class="font-italic text-muted text-start fs-6">No Products that were out of stock.</p>
             @endif
           </div>
-        </div>
-        <div class="card bg-primary">
-          
         </div>
       </div>
     </div>

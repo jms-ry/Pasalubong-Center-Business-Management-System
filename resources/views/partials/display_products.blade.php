@@ -16,7 +16,8 @@
     data-action="click->pos#addProductAsOrderItem"
     data-product-id="{{$product->id}}"
     data-product-name="{{$product->name}}"
-    data-product-price="{{$product->unit_price}}">
+    data-product-price="{{$product->unit_price}}"
+    data-product-quantity="{{$product->quantity}}">
       <img src="{{ url('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px;" >
       <p class="text-center mt-2">{{ $product->name }}({{$product->quantity}})</p>
       <p class="text-center">Price: ₱{{ $product->unit_price }}</p>

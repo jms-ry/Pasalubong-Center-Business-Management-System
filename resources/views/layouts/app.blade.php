@@ -75,7 +75,6 @@
             @endguest
           </ul> 
         </nav>
-           
       @endauth
       @include('sidebar')
       <main class="py-4">

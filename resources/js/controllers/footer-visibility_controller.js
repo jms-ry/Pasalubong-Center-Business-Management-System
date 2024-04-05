@@ -13,9 +13,12 @@ export default class extends Controller {
     // Check if the bottom of the footer is within the viewport height
     const isFooterVisible = footerRect.bottom <= window.innerHeight;
     
-    if (isFooterVisible) {
+    if(isFooterVisible){
       document.body.classList.add('overflow-hidden');
-    } else {
+    }else{
+      if(window.location.pathname === "/dashboard"){
+        document.body.classList.add('overflow-hidden');
+      }
       document.body.classList.add('overflow-x-hidden'); 
     }
   }

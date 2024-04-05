@@ -54,7 +54,7 @@
                   </table>
                   <div class="text-end mt-2 " id="discountTotalDiv">
                     <div class="d-flex flex-column">
-                      <input type="number" class="form-control form-control-sm border border-dark border-1 ms-2 mt-2 d-none" id="discountField" name="discountField" min="1" step="1" pattern="[1-9][0-9]*"placeholder="Enter Discount" data-action="input->pos#validateDiscountField input->pos#updateTotalAmounts">
+                      <input type="number" class="form-control form-control-sm border border-dark border-1 ms-2 mt-2 d-none" style="width: 60%;" id="discountField" name="discountField" min="1" step="1" pattern="[1-9][0-9]*"placeholder="Enter Discount" data-action="input->pos#validateDiscountField input->pos#updateTotalAmounts">
                       <div class="invalid-feedback ms-2" id="discountFeedback"></div>
                     </div>
                     <p class="fw-bold fs-5 text-dark mt-2">Total: <span id="totalAmountValue">₱0.00</span></p>
@@ -67,7 +67,8 @@
                     <div class="text-danger d-block" id="reminderPlaceholder">
                       <p class="fw-bold">Button is disabled. Please do the following:
                         <span id="selectCustomerReminder" class="d-block ml-4" >- Select a Customer.</span>
-                        <span id="selectProductReminder" class="d-block ml-4">- Click a product to be placed as Order. Quantity can be edited.</span>
+                        <span id="selectProductReminder" class="d-block ml-4">- Click a product to be placed as Order</span>
+                        <span id="selectProductQuantityReminder" class="d-block ml-4">- Quantity should not exceed the available product's quantity.</span>
                       </p>
                     </div>
                   </div>
