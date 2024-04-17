@@ -33,7 +33,7 @@
                   @endif
                   <div class="input-group">
                     <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()" data-product-target="sortField">
-                      <option value="" selected>Sort by</option>
+                      <option value="" selected disabled hidden>Sort by</option>
                       <option value="name" {{ request()->get('sort') === 'name' ? 'selected' : '' }}>Product Name</option>
                       <option value="quantity" {{ request()->get('sort') === 'quantity' ? 'selected' : '' }}>Quantity</option>
                       <option value="unit_price" {{ request()->get('sort') === 'unit_price' ? 'selected' : '' }}>Unit Price</option>
