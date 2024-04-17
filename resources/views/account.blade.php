@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4" >
+<div class="container mt-4" data-controller="user">
   <div class="card-header text-center text-dark mt-2 d-flex align-items-center justify-content-center">
     <div>
       <i class="bi bi-person-workspace" style="font-size: 3.5rem"></i>
@@ -16,7 +16,7 @@
         <div class="col-6">
           <form method="GET">
             <div class="input-group">
-              <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2">
+              <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2" data-user-target="searchField">
               <button class="btn btn-info btn-sm" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
             </div>
           </form>
@@ -29,7 +29,7 @@
                   <input type="hidden" name="search" value="{{ request()->get('search') }}">
                 @endif
                <div class="input-group">
-                  <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()">
+                  <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()" data-user-target="sortField">
                     <option value="" selected>Sort by</option>
                     <option value="name" {{ request()->get('sort') === 'name' ? 'selected' : '' }}>Name</option>
                     <option value="role" {{ request()->get('sort') === 'role' ? 'selected' : '' }}>Job Title</option>
@@ -39,14 +39,14 @@
               </form>
             </div>
             <div class="col-auto">
-              <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#createAccountModal">Create New Account</button>
+              <button type="button" class="btn btn-sm btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#createAccountModal" data-action="click->user#disableFields">Create New Account</button>
             </div>
             @include('modals.account.create_account_modal')
           </div>
         </div>
       </div>
     </div>
-    <div class="card-body bg-dark" data-controller="user">
+    <div class="card-body bg-dark">
       @if($users->count() > 0)
         <table class="table table-bordered fw-bold table-hover shadow text-center">
           <thead>
@@ -87,9 +87,15 @@
           <tbody>
             <tr>
               <td colspan="5">
-                <div class="text-center text-dark fw-bold m-5">
-                  <p class="font-weight-bold">No records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
-                </div>
+                @if(request()->has('search') && request()->get('search') !== '')
+                  <div class="text-center text-dark fw-bold m-5">
+                    <p class="font-weight-bold">No account records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
+                  </div>
+                @else
+                  <div class="text-center text-dark fw-bold m-5">
+                    <p class="fw-bold">No account records.</p>
+                  </div>
+                @endif
               </td>
             </tr>
           </tbody>

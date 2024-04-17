@@ -80,9 +80,15 @@
             <tbody>
               <tr>
                 <td colspan="5">
-                  <div class="text-center text-dark fw-bold m-5">
-                    <p class="font-weight-bold">No records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
-                  </div>
+                  @if(request()->has('search') && request()->get('search') !== '')
+                    <div class="text-center text-dark fw-bold m-5">
+                      <p class="font-weight-bold">No log records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
+                    </div>
+                  @else
+                    <div class="text-center text-dark fw-bold m-5">
+                      <p class="fw-bold">No log records.</p>
+                    </div>
+                  @endif
                 </td>
               </tr>
             </tbody>

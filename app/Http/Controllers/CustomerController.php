@@ -111,7 +111,7 @@ class CustomerController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->back()->with('success','Customer was updated successfully');
+    return redirect()->back()->with('success','Customer whose id is ' . $customer->id . ' was updated successfully');
   }
 
   /**
@@ -136,6 +136,6 @@ class CustomerController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->back()->with('success', 'Customer was deleted successfully.');
+    return redirect()->back()->with('success', 'Customer ' . $customer->first_name . ' was deleted successfully.');
   }
 }

@@ -16,7 +16,7 @@ class DtrController extends Controller
   {
     Session::flash('index_success', 'You are currently viewing the dtrs page!');
     $user = auth()->user();
-    $query = Dtr::whereNotNull('signed_out_time');
+    $query = Dtr::query();
     
     if ($user->role != 'admin') {
       $query->where('user_id', $user->id);

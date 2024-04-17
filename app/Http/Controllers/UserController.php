@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -68,6 +69,9 @@ class UserController extends Controller
       'address_id' => $address->id
     ]);
 
+    $employee = Employee::create([
+      'user_id' => $user->id  
+    ]);
         
     DB::table('logs')->insert([
       'user_id' =>Auth::id(),

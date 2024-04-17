@@ -74,7 +74,7 @@ class SupplierController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->route('suppliers.index')->with('create_success', 'Supplier '.$supplier->company_name.' was created successfully');
+    return redirect()->back()->with('create_success', 'Supplier '.$supplier->company_name.' was created successfully');
   }
 
   /**
@@ -114,7 +114,7 @@ class SupplierController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->route('suppliers.index')->with('success','Supplier with id '.$supplier->id.' was updated successfully');
+    return redirect()->back()->with('success','Supplier with id '.$supplier->id.' was updated successfully');
   }
 
   /**
@@ -123,7 +123,7 @@ class SupplierController extends Controller
   public function destroy(Supplier $supplier)
   {
     if ($supplier->products()->where('quantity', '>', 0)->exists()) {
-      return redirect()->route('suppliers.index')->with('error', 'Supplier has associated products with quantity greater than 0. Unable to delete.');
+      return redirect()->back()->with('error', 'Supplier has associated products with quantity greater than 0. Unable to delete.');
     }
         
     if($supplier->address) {
@@ -139,6 +139,6 @@ class SupplierController extends Controller
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->route('suppliers.index')->with('success','Supplier was deleted successfully');
+    return redirect()->back()->with('success','Supplier was deleted successfully');
   }
 }

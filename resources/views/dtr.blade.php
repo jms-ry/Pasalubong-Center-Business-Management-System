@@ -66,7 +66,7 @@
                   <td>{{ $dtr->user->name }},{{ $dtr->user->role == 'admin' ? ' an' : ' a' }} {{ucfirst($dtr->user->role) }}</td>
                   <td>{{ \Carbon\Carbon::parse($dtr->logged_date)->format('M d, Y') }}</td>
                   <td>{{ \Carbon\Carbon::parse($dtr->signed_in_time)->format('g:iA') }}</td>
-                  <td>{{ $dtr->signed_out_time ? \Carbon\Carbon::parse($dtr->signed_out_time)->format('g:iA') : '' }}</td>
+                  <td class="{{ $dtr->signed_out_time ? '' : 'text-muted' }}">{{ $dtr->signed_out_time ? \Carbon\Carbon::parse($dtr->signed_out_time)->format('g:iA') : 'Currently signed in' }}</td>
                 </tr>
               @endforeach
             </tbody>
@@ -85,9 +85,15 @@
             <tbody>
               <tr>
                 <td colspan="5">
-                  <div class="text-center text-dark fw-bold m-5">
-                    <p class="font-weight-bold">No records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
-                  </div>
+                  @if(request()->has('search') && request()->get('search') !== '')
+                    <div class="text-center text-dark fw-bold m-5">
+                      <p class="font-weight-bold">No dtr records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
+                    </div>
+                  @else
+                    <div class="text-center text-dark fw-bold m-5">
+                      <p class="fw-bold">No dtr records.</p>
+                    </div>
+                  @endif
                 </td>
               </tr>
             </tbody>

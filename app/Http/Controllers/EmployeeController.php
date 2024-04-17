@@ -159,11 +159,11 @@ class EmployeeController extends Controller
 
     DB::table('logs')->insert([
       'user_id' => Auth::id(),
-      'action' => 'Deleted customer, ' . $employee->user->name . ' ' ,
+      'action' => 'Deleted employee, ' . $employee->user->name . ' ' ,
       'logged_date' => now()->toDateString(),
       'logged_time' => now()->toTimeString(),
     ]);
 
-    return redirect()->back()->with('success', 'Employee was deleted successfully');
+    return redirect()->back()->with('success', 'Employee ' . $employee->user->name . ' was deleted successfully');
   }
 }

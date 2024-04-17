@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark">
       <div class="modal-header">
-        <h4>Edit Employee's Information</h4>
+        <h4>Edit Customer's Information</h4>
       </div>
       <form method="POST" action="{{ route('customers.update', ['customer' => '__CUSTOMER_ID__']) }}" id="editCustomerForm">
         @csrf
