@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="pos"
 export default class extends Controller {
-  static targets = ["currentTime","displayCustomerInfo","customerSelect","selectedCustomer","orderItemsTable","totalDisplay"];
+  static targets = ["currentTime","displayCustomerInfo","customerSelect","selectedCustomer","orderItemsTable","totalDisplay","productList"];
   connect() {
     this.updateTime(); 
     const customerSelect = this.element.querySelector('#customer_id');
@@ -11,7 +11,11 @@ export default class extends Controller {
       this.hideAddCustomerButton();
     });
     
-   
+    this.currentPage = 1;
+    this.productsPerPage = 4;
+    this.products = this.productListTarget.querySelectorAll("li");
+    this.showPage(1);
+    this.toggleButtons();
   }
 
   updateTime() {
@@ -283,6 +287,51 @@ export default class extends Controller {
       proceedPaymentBtn.classList.remove('disabled');
     }
   }
+  showPage(page) {
+    const startIndex = (page - 1) * this.productsPerPage;
+    const endIndex = startIndex + this.productsPerPage;
+    this.products.forEach((product, index) => {
+      if (index >= startIndex && index < endIndex) {
+        product.style.display = "block";
+      } else {
+        product.style.display = "none";
+      }
+    });
+  }
 
+  nextPage() {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.showPage(this.currentPage);
+      this.toggleButtons();
+    }
+  }
 
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.showPage(this.currentPage);
+      this.toggleButtons();
+    }
+  }
+
+  totalPages() {
+    return Math.ceil(this.products.length / this.productsPerPage);
+  }
+
+  toggleButtons() {
+    const prevButton = this.element.querySelector('#prevButton');
+    const nextButton = this.element.querySelector('#nextButton');
+    if (this.currentPage === 1) {
+      prevButton.classList.add("d-none");
+    } else {
+      prevButton.classList.remove("d-none");
+    }
+
+    if (this.currentPage === this.totalPages()) {
+      nextButton.classList.add("d-none");
+    } else {
+      nextButton.classList.remove("d-none");
+    }
+  }
 }
