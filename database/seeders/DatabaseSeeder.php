@@ -224,7 +224,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'pack',
             'quantity' => 100,
             'unit_price' => 5.99,
-            'delivered_date' => '2023-01-01'
+            'delivered_date' => '2023-01-01',
+            'image' => 'product_images/driedmango.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -235,7 +236,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'box',
             'quantity' => 100,
             'unit_price' => 8.49,
-            'delivered_date' => '2023-11-11'
+            'delivered_date' => '2023-11-11',
+            'image' => 'product_images/coffeeblend.jpg'
         ]);
 
         
@@ -247,7 +249,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'piece',
             'quantity' => 100,
             'unit_price' => 12.99,
-            'delivered_date' => '2023-05-16'
+            'delivered_date' => '2023-05-16',
+            'image' => 'product_images/scarf.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -258,7 +261,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'pack',
             'quantity' => 100,
             'unit_price' => 4.99,
-            'delivered_date' => '2023-05-11'
+            'delivered_date' => '2023-05-11',
+            'image' => 'product_images/chocolatebites.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -269,7 +273,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'bottle',
             'quantity' => 100,
             'unit_price' => 7.99,
-            'delivered_date' => '2023-12-11'
+            'delivered_date' => '2023-12-11',
+            'image' => 'product_images/pineapple.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -280,7 +285,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'piece',
             'quantity' => 100,
             'unit_price' => 3.99,
-            'delivered_date' => '2023-08-22'
+            'delivered_date' => '2023-08-22',
+            'image' => 'product_images/batik.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -291,7 +297,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'bottle',
             'quantity' => 100,
             'unit_price' => 9.99,
-            'delivered_date' => '2023-10-11'
+            'delivered_date' => '2023-10-11',
+            'image' => 'product_images/turmeric.webp'
         ]);
 
         
@@ -303,7 +310,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'pack',
             'quantity' => 100,
             'unit_price' => 11.99,
-            'delivered_date' => '2023-04-11'
+            'delivered_date' => '2023-04-11',
+            'image' => 'product_images/pili.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -314,7 +322,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'piece',
             'quantity' => 100,
             'unit_price' => 14.99,
-            'delivered_date' => '2023-08-22'
+            'delivered_date' => '2023-08-22',
+            'image' => 'product_images/tribal.jpg'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -325,7 +334,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'pack',
             'quantity' => 100,
             'unit_price' => 3.99,
-            'delivered_date' => '2023-11-11'
+            'delivered_date' => '2023-11-11',
+            'image' => 'product_images/tamarind.webp'
         ]);
 
         \App\Models\Product::factory()->create([
@@ -336,7 +346,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'bottle',
             'quantity' => 100,
             'unit_price' => 10.99,
-            'delivered_date' => '2023-06-11'
+            'delivered_date' => '2023-06-11',
+            'image' => 'product_images/ube.jpg'
         ]);
     }
 }

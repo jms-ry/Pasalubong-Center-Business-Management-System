@@ -8,7 +8,7 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="amount"class="form-label">Payment Amount:</label>
-          <input type="number" class="form-control border border-dark" id="amountField" name="amountField"  data-action="input->pos#checkoutOrder" required>
+          <input type="number" class="form-control border border-dark" id="amountField" name="amountField"  data-action="input->pos#checkoutOrder" min="1" step="0.01" required>
           <input type="hidden" name="amount" id="amount" value>
           <input type="hidden" name="change" id="change" value>
         </div>
@@ -16,7 +16,7 @@
           <button type="submit" class="btn btn-primary" >Checkout Order</button>
         </div>
         <div class="text-danger text-center d-block mt-2" id="paymentReminderPlaceholder">
-          <span class="d-block ml-4">Please enter payment amount greater than <span data-pos-target="totalDisplay"></span>.</span>
+          <span class="d-block ml-4" id="messageReminder">Please enter payment amount greater than <span data-pos-target="totalDisplay"></span>.</span>
         </div>
       </div>
     </div>

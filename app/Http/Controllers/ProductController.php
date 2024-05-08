@@ -51,28 +51,30 @@ class ProductController extends Controller
   */
   public function store(StoreProductRequest $request)
   {
+    $requestData = $request->all();
+
     if ($request->hasFile('image')) {
-      // Store the uploaded image in the storage directory
-      $imagePath = $request->file('image')->store('product_images', 'public');
-            
-      // Set the image path in the request data
-      $requestData = $request->all();
-      $requestData['image'] = $imagePath;
-            
-      // Create the product with the updated request data
-      $product = Product::create($requestData);
-    } else {
-      // If no image was uploaded, create the product without an image
-      $product = Product::create($request->all());
+        // Store the uploaded image in the storage directory
+        $imagePath = $request->file('image')->store('public/product_images');
+
+        // Get the actual path in the storage directory
+        $actualPath = str_replace('public/', 'storage/', $imagePath);
+
+        // Set the image path in the request data
+        $requestData['image'] = $actualPath;
     }
 
+    // Create the product with the updated request data
+    $product = Product::create($requestData);
+
     DB::table('logs')->insert([
-      'user_id' =>Auth::id(),
-      'action' => 'Created new product, ' . $product->name,
-      'logged_date' => now()->toDateString(),
-      'logged_time' => now()->toTimeString(),
+        'user_id' => Auth::id(),
+        'action' => 'Created new product, ' . $product->name,
+        'logged_date' => now()->toDateString(),
+        'logged_time' => now()->toTimeString(),
     ]);
-    return redirect()->back()->with('create_success', 'Product '.$product->name.' was created successfully');
+
+    return redirect()->back()->with('create_success', 'Product ' . $product->name . ' was created successfully');
   }
 
   /**
@@ -99,26 +101,27 @@ class ProductController extends Controller
     // Handle image upload
     if ($request->hasFile('image')) {
       // Store the new uploaded image in the storage directory
-      $imagePath = $request->file('image')->store('product_images', 'public');
-        
+      $imagePath = $request->file('image')->store('public/product_images');
+
       // Delete the previous image if it exists
       if ($product->image) {
         Storage::disk('public')->delete($product->image);
       }
 
       // Update the product with the new image path
-      $product->update(array_merge($request->all(), ['image' => $imagePath]));
+      $product->update(array_merge($request->all(), ['image' => str_replace('public/', 'storage/', $imagePath)]));
     } else {
       // If no new image is uploaded, update the product without changing the image
       $product->update($request->all());
     }
+
     DB::table('logs')->insert([
       'user_id' => Auth::id(),
-      'action' => 'Updated product whose id is ' . $product->id . '',
+      'action' => 'Updated product whose id is ' . $product->id,
       'logged_date' => now()->toDateString(),
       'logged_time' => now()->toTimeString(),
     ]);
-        
+
     return redirect()->back()->with('success', 'Product with id of ' . $product->id . ' was updated successfully');
   }
 
