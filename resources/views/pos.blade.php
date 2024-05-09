@@ -87,7 +87,16 @@
             </div>
             <div class="card shadow mt-2">
               <div class="card-header shadow bg-primary">
-                <span class="fw-bold fs-5 text-dark">Available Products</span>
+                <div class="row g-2 justify-content-between">
+                  <div class="col-6">
+                    <span class="fw-bold fs-5 text-dark">Available Products</span>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-group">
+                      <input type="text" name="search" class="form-control form-control-sm" placeholder="Search using Product's Barcode or Name..." value="" aria-label="Search" aria-describedby="button-addon2">
+                    </div>
+                  </div>
+                </div>
               </div>
               @include('partials.display_products')
             </div>
