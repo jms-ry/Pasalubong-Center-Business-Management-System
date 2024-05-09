@@ -93,7 +93,7 @@
                   </div>
                   <div class="col-6">
                     <div class="input-group">
-                      <input type="text" name="search" class="form-control form-control-sm" placeholder="Search using Product's Barcode or Name..." value="" aria-label="Search" aria-describedby="button-addon2">
+                      <input type="text" name="search" class="form-control form-control-sm" placeholder="Search using Product's Barcode or Name..." value="" aria-label="Search" aria-describedby="button-addon2" data-action="input->pos#filterProducts" data-pos-target="searchInput">
                     </div>
                   </div>
                 </div>

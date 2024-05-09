@@ -13,7 +13,7 @@
 <div class="card-body d-flex flex-wrap" id="product-display-lists">
   <ul class="product-list d-flex flex-wrap" data-pos-target="productList">
     @foreach ($products as $product)
-      <li id="product[{{$product->id}}]">
+      <li data-product-name="{{$product->name}}" data-product-barcode="{{$product->bar_code}}">
         <div class="product-card d-flex flex-column align-items-center m-1 p-1 text-dark" id= "product[{{$product->id}}]" name="product[{{$product->name}}]"
         data-action="click->pos#addProductAsOrderItem"
         data-product-id="{{$product->id}}"
@@ -27,9 +27,12 @@
         </div>
       </li>
     @endforeach
+    <li class="no-results d-none d-flex justify-content-center ms-5 fs-5" data-pos-target="noResults">
+      <p class="d-flex flex-row align-items-center fw-bold"> No products record found with <span class="search-term badge text-wrap text-bg-info ms-1 me-1"></span> as product's name or barcode.</p>
+    </li>
   </ul>
 </div>
-<div class="text-end m-4">
+<div class="text-end m-4" id="paginationButton">
   <button type="button" class="btn btn-primary me-2 d-none" id="prevButton" data-action="click->pos#previousPage">Prev</button>
   <button type="button" class="btn btn-primary" id="nextButton" data-action="click->pos#nextPage">Next</button>
 </div>

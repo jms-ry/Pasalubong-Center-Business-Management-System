@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="pos"
 export default class extends Controller {
-  static targets = ["currentTime","displayCustomerInfo","customerSelect","selectedCustomer","orderItemsTable","totalDisplay","productList"];
+  static targets = ["currentTime","displayCustomerInfo","customerSelect","selectedCustomer","orderItemsTable","totalDisplay","productList", "searchInput", "noResults", "searchTerm"];
   connect() {
     this.updateTime(); 
     const customerSelect = this.element.querySelector('#customer_id');
@@ -13,7 +13,7 @@ export default class extends Controller {
     
     this.currentPage = 1;
     this.productsPerPage = 4;
-    this.products = this.productListTarget.querySelectorAll("li");
+    this.products = this.productListTarget.querySelectorAll("li:not(.no-results)");
     this.showPage(1);
     this.toggleButtons();
   }
@@ -334,4 +334,43 @@ export default class extends Controller {
       nextButton.classList.remove("d-none");
     }
   }
+  filterProducts() {
+    const searchTerm = this.searchInputTarget.value.trim().toLowerCase();
+    const paginationButton = this.element.querySelector('#paginationButton');
+    const matchingProducts = Array.from(this.products).filter(product => {
+        const productName = product.dataset.productName.toLowerCase();
+        const productBarcode = product.dataset.productBarcode.toLowerCase();
+        return productName.includes(searchTerm) || productBarcode.includes(searchTerm);
+    });
+
+    if (matchingProducts.length === 0) {
+        // No matching products found, show no results message
+        this.noResultsTarget.classList.remove("d-none");
+        this.noResultsTarget.querySelector(".search-term").textContent = searchTerm;
+        this.products.forEach(product => {
+            product.style.display = "none";
+        });
+        // Hide pagination buttons
+        paginationButton.classList.add("d-none");
+    } else {
+        // Matching products found, hide no results message and show matching products
+        this.noResultsTarget.classList.add("d-none");
+        this.products.forEach(product => {
+            product.style.display = "none";
+        });
+        matchingProducts.forEach(product => {
+            product.style.display = "block";
+        });
+        // Show pagination buttons
+        paginationButton.classList.remove("d-none");
+    }
+
+    // Reset pagination to show first page when search input is cleared
+    if (searchTerm === "") {
+        this.currentPage = 1;
+        this.showPage(this.currentPage);
+        this.toggleButtons();
+    }
+}
+
 }
