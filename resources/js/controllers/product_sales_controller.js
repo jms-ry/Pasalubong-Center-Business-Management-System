@@ -18,7 +18,10 @@ export default class extends Controller {
     });
 
     const totalSalesCell = document.getElementById('totalSales');
-    totalSalesCell.textContent = `₱${totalSales.toFixed(2)}`;
+    if(totalSalesCell){
+      totalSalesCell.textContent = `₱${totalSales.toFixed(2)}`;
+    }
+    
   }
   viewReceiptModal(event){
     const receiptData = event.currentTarget.dataset.receipt;

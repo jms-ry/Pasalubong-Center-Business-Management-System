@@ -11,6 +11,9 @@ application.register('customer', CustomerController)
 import EmployeeController from './employee_controller'
 application.register('employee', EmployeeController)
 
+import FilterController from './filter_controller'
+application.register('filter', FilterController)
+
 import FlashMessageController from './flash_message_controller'
 application.register('flash-message', FlashMessageController)
 

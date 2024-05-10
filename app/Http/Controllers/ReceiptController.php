@@ -34,6 +34,11 @@ class ReceiptController extends Controller
       });
     }
     
+    if($request->has('date')){
+      $date = $request->get('date');
+      $query->whereDate('receipts.created_at', $date);
+    }
+
     if($request->has('sort')){
       $sortField = $request->get('sort');
 
