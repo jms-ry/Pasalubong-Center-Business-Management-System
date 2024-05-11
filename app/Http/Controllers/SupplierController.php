@@ -34,7 +34,7 @@ class SupplierController extends Controller
       $query->orderBy('id', 'asc');
     }
 
-    $suppliers = $query->paginate(5)->withQueryString();
+    $suppliers = $query->paginate(10)->withQueryString();
     $suppliers->load('address');
     return view('supplier', compact('suppliers'));
   }

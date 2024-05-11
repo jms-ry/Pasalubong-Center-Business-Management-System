@@ -32,6 +32,9 @@ application.register('pos', PosController)
 import ProductController from './product_controller'
 application.register('product', ProductController)
 
+import ProductFilterDateController from './product_filter_date_controller'
+application.register('product-filter-date', ProductFilterDateController)
+
 import ProductSalesController from './product_sales_controller'
 application.register('product-sales', ProductSalesController)
 

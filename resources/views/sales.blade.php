@@ -102,7 +102,7 @@
                   @if(request()->has('search') && request()->get('search') !== '')
                     @if(request()->has('date') && request()->get('date') !== '' )
                       <div class="text-center text-dark fw-bold m-5">
-                        <p class="font-weight-bold">No sales records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span> that was made at <span class="badge text-bg-info">{{ \Carbon\Carbon::parse(request()->get('date'))->format('F j, Y') }}</p>
+                        <p class="font-weight-bold">No sales records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span> that was made at <span class="badge text-bg-info">{{ \Carbon\Carbon::parse(request()->get('date'))->format('F j, Y') }}</span></p>
                       </div>
                     @else
                       <div class="text-center text-dark fw-bold m-5">

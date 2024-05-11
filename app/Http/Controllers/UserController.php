@@ -33,7 +33,7 @@ class UserController extends Controller
       $query->orderBy('id', 'asc');
     }
 
-    $users = $query->paginate(5);
+    $users = $query->paginate(10);
 
     // Load relationships after retrieving search results
     $users->load('address');

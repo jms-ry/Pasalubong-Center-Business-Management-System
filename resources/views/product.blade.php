@@ -18,6 +18,9 @@
         <div class="row">
           <div class="col-md-6">
             <form method="GET">
+              @if(request()->has('date'))
+                <input type="hidden" name="date" value="{{ request()->get('date') }}">
+              @endif
               <div class="input-group">
                 <input type="text" name="search" class="form-control form-control-sm" placeholder="Search..." value="{{ request()->get('search') }}" aria-label="Search" aria-describedby="button-addon2" data-product-target="searchField">
                 <button class="btn btn-info btn-sm" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
@@ -26,10 +29,16 @@
           </div>
           <div class="col-md-6">
             <div class="row g-2 justify-content-end">
-              <div class="col-auto">
+              <div class="col-auto d-flex flex-row">
+                <div class="mb-3 fw-bold me-1">
+                  <input type="date" name="filter-deliver-date" class="form-control form-control-sm" id="filter-deliver-date" data-controller="product-filter-date" data-action="change->product-filter-date#filterByDate" data-product-filter-date-target="dateInput">
+                </div>
                 <form method="GET">
                   @if(request()->filled('search'))
                     <input type="hidden" name="search" value="{{ request()->get('search') }}">
+                  @endif
+                  @if(request()->has('date'))
+                    <input type="hidden" name="date" value="{{ request()->get('date') }}">
                   @endif
                   <div class="input-group">
                     <select name="sort" class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="this.form.submit()" data-product-target="sortField">
@@ -99,8 +108,18 @@
               <tr>
                 <td colspan="6">
                   @if(request()->has('search') && request()->get('search') !== '')
+                    @if(request()->has('date') && request()->get('date') !== '' )
+                      <div class="text-center text-dark fw-bold m-5">
+                        <p class="font-weight-bold">No product records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span> that was delivered at <span class="badge text-bg-info">{{ \Carbon\Carbon::parse(request()->get('date'))->format('F j, Y') }}</span>.</p>
+                      </div>
+                    @else
+                      <div class="text-center text-dark fw-bold m-5">
+                        <p class="font-weight-bold">No product records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span>.</p>
+                      </div>
+                    @endif
+                  @elseif(request()->has('date') && request()->get('date') !== '')
                     <div class="text-center text-dark fw-bold m-5">
-                      <p class="font-weight-bold">No product records found for <span class="badge text-bg-info">{{ request()->get('search') }}</span></p>
+                      <p class="font-weight-bold">No product records was delivered at <span class="badge text-bg-info">{{ \Carbon\Carbon::parse(request()->get('date'))->format('F j, Y') }}</span>.</p>
                     </div>
                   @else
                     <div class="text-center text-dark fw-bold m-5">

@@ -17,26 +17,36 @@ class ProductController extends Controller
     * Display a listing of the resource.
   */
   public function index(Request $request)
-  { 
-    Session::flash('index_success', 'You are currently viewing the products page!');    
+  {
+    Session::flash('index_success', 'You are currently viewing the products page!');
+  
     $suppliers = Supplier::all();
-
-    $query = Product::search($request->filled('search') ? $request->search : '');
-
+  
+    $query = Product::query(); // Use Eloquent query builder
+  
+    if ($request->has('date')) {
+      $date = $request->get('date');
+      $query->whereDate('delivered_date', $date);
+    }
+  
+    if ($request->filled('search')) {
+      $query->where('name', 'like', '%' . $request->search . '%');
+    }
+  
     if ($request->filled('sort')) {
       $sortColumn = $request->input('sort');
-      $sortDirection = $request->input('direction', 'asc'); 
-      
+      $sortDirection = $request->input('direction', 'asc');
       $query->orderBy($sortColumn, $sortDirection);
-    }else{
+    } else {
       $query->orderBy('id', 'asc');
     }
-
-    $products = $query->paginate(5)->withQueryString();
+  
+    $products = $query->paginate(10)->withQueryString();
     $products->load('supplier');
-        
+  
     return view('product', compact('products', 'suppliers'));
   }
+  
 
   /**
     * Show the form for creating a new resource.
